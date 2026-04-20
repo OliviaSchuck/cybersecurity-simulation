@@ -18,246 +18,372 @@ const nodes = {
   // PHASE 1 — STARTER QUESTIONS
   // -------------------------
   
-  q1: {
-    id: "q1",
-    text: "Do you reuse passwords across multiple accounts?",
-    options: [
-      { label: "Yes", score: 2, next: "q2" },
-      { label: "No", score: 0, next: "q2" }
-    ]
-  },
+{
+question: "Have you ever received training on cybersecurity at school or work?",
+category: "device",
+options: [
+{ text: "Yes", score: 2, feedback: "Nice, you’ve had some training! Now let’s see if it actually stuck 😏" },
+{ text: "No", score: 0, feedback: "No worries! This simulation is basically your crash course. Welcome to cybersecurity 101." }
+]
+},
 
-  q2: {
-    id: "q2",
-    text: "Do you often click “Accept All Cookies” without reading them?",
-    options: [
-      { label: "Yes", score: 2, next: "q3" },
-      { label: "No", score: 0, next: "q3" }
-    ]
-  },
+/* 2 */
+{
+question: "Are you aware of these terms? (Select all that apply)",
+category: "device",
+options: [
+{ text: "3+ selected", score: 2, feedback: "Look at you! You know the basics of cybersecurity terms." },
+{ text: "1–2 selected", score: 1, feedback: "Good start, but there’s more to learn." },
+{ text: "None", score: 0, feedback: "No problem! This is where your learning begins." }
+]
+},
 
-  q3: {
-    id: "q3",
-    text: "Do you use public Wi‑Fi to access important accounts (email, banking, work)?",
-    options: [
-      { label: "Yes", score: 2, next: "q4" },
-      { label: "No", score: 0, next: "q4" }
-    ]
-  },
+/* 3 */
+{
+question: "Who do you think is responsible for cybersecurity at a company?",
+category: "device",
+options: [
+{ text: "IT handles cybersecurity", score: 0, feedback: "IT helps, but they can’t stop every risky click." },
+{ text: "Security software handles it", score: 0, feedback: "Tools help, but people are the biggest factor." },
+{ text: "Management handles it", score: 0, feedback: "Leadership matters, but everyone plays a role." },
+{ text: "Everyone shares responsibility", score: 2, feedback: "Correct! Cybersecurity is a team effort 🤝" }
+]
+},
 
-  q4: {
-    id: "q4",
-    text: "When using public Wi‑Fi, which best describes you?",
-    options: [
-      { label: "I log into anything I need", score: 2, next: "q5" },
-      { label: "I avoid sensitive accounts", score: 1, next: "q5" },
-      { label: "I never use public Wi‑Fi", score: 0, next: "q5" }
-    ]
-  },
+/* 4 */
+{
+question: "Do you use antivirus or endpoint protection on your devices?",
+category: "device",
+options: [
+{ text: "Always", score: 2, feedback: "Great! This adds an extra layer of protection." },
+{ text: "Sometimes", score: 1, feedback: "Helpful, but consistency matters." },
+{ text: "Never", score: 0, feedback: "Risky—your device is more exposed to threats." },
+{ text: "Not sure", score: 0, feedback: "If you’re not sure, it’s worth checking your device settings." }
+]
+},
 
-  q5: {
-    id: "q5",
-    text: "Do you ever paste personal or work information into AI tools (like ChatGPT)?",
-    options: [
-      { label: "Yes", score: 2, next: "q6" },
-      { label: "No", score: 0, next: "q6" }
-    ]
-  },
+/* 5 */
+{
+question: "Do you use the same password for more than one account?",
+category: "password",
+options: [
+{ text: "Yes", score: 0, feedback: "One password reused = one breach affecting everything 😬" },
+{ text: "No", score: 2, feedback: "Nice! Unique passwords make you much harder to hack." }
+]
+},
 
-  q6: {
-    id: "q6",
-    text: "Do you click on links in emails or messages from people you don’t know?",
-    options: [
-      { label: "Yes", score: 3, next: "q7" },
-      { label: "No", score: 0, next: "q7" }
-    ]
-  },
+/* 6 */
+{
+question: "Do you use a password manager to keep your passwords safe?",
+category: "password",
+options: [
+{ text: "Yes", score: 2, feedback: "Smart! This is one of the best security habits." },
+{ text: "No", score: 1, feedback: "Password managers store passwords securely so you only remember one master password." }
+]
+},
 
-  q7: {
-    id: "q7",
-    text: "If a webpage required you to click a link that might be unsafe, would you still click it?",
-    options: [
-      { label: "Yes", score: 3, next: "q8" },
-      { label: "No", score: 0, next: "q8" }
-    ]
-  },
+/* 7 */
+{
+question: "How often do you change your passwords for important accounts (email, banking, school/work)?",
+category: "password",
+options: [
+{ text: "Every few months", score: 2, feedback: "Great! You’re staying ahead of potential breaches." },
+{ text: "Once a year", score: 1, feedback: "Decent, but more frequent updates are safer." },
+{ text: "Rarely", score: 0, feedback: "Risky—old passwords can be compromised." },
+{ text: "Never", score: 0, feedback: "That password might not be as private as you think 👀" }
+]
+},
 
-  q8: {
-    id: "q8",
-    text: "AI companies use user‑submitted data to train their models.",
-    options: [
-      { label: "True", score: 0, next: "f1" },
-      { label: "False", score: 2, next: "f1" }
-    ]
-  },
+/* 8 */
+{
+question: "When a website asks you to accept cookies, do you usually click “Accept” without reading?",
+category: "device",
+options: [
+{ text: "Yes", score: 0, feedback: "Quick click… but you might be sharing more data than you realize." },
+{ text: "No", score: 2, feedback: "Nice! You’re paying attention to your privacy." }
+]
+},
 
-  // -------------------------
-  // PHASE 2 — FOLLOW‑UP SCENARIOS
-  // -------------------------
+/* 9 */
+{
+question: "Do you know what “social engineering” means in cybersecurity?",
+category: "phishing",
+options: [
+{ text: "Yes", score: 2, feedback: "Good! This is one of the most common attack methods." },
+{ text: "No", score: 0, feedback: "Many attacks rely on tricking people instead of hacking systems." }
+]
+},
 
-  f1: {
-    id: "f1",
-    text: "Your company account setup asks you to create your first work password.",
-    options: [
-      { label: "Reuse a password you already use", score: 3, next: "f2" },
-      { label: "Slightly change an old password", score: 2, next: "f2" },
-      { label: "Create a brand‑new password you can remember", score: 1, next: "f2" },
-      { label: "Use a password manager to generate one", score: 0, next: "f2" }
-    ]
-  },
+/* 10 */
+{
+question: "Do you click on links in emails or messages from unknown senders?",
+category: "phishing",
+options: [
+{ text: "Always", score: 0, feedback: "You’re a prime target for phishing 😬" },
+{ text: "Sometimes", score: 1, feedback: "Risky—one click is all it takes." },
+{ text: "Never", score: 2, feedback: "Great instinct!" }
+]
+},
 
-  f2: {
-    id: "f2",
-    text: "A site blocks you with a cookie banner before you can continue.",
-    options: [
-      { label: "Accept all cookies", score: 3, next: "f3" },
-      { label: "Accept only required cookies", score: 1, next: "f3" },
-      { label: "Open settings and adjust tracking", score: 0, next: "f3" },
-      { label: "Close the page and leave", score: 0, next: "f3" }
-    ]
-  },
+/* 11 */
+{
+question: "How often do you check where a link goes (hover over it) before clicking in emails from unknown sources?",
+category: "phishing",
+options: [
+{ text: "Always", score: 2, feedback: "Yes! This is a powerful habit." },
+{ text: "Sometimes", score: 1, feedback: "Good, but be consistent." },
+{ text: "Rarely", score: 0, feedback: "You’re taking a risk." },
+{ text: "Never", score: 0, feedback: "You’re basically clicking blindfolded." }
+]
+},
 
-  f3: {
-    id: "f3",
-    text: "You’re at a coffee shop and need to log into your work dashboard.",
-    options: [
-      { label: "Use the open public Wi‑Fi", score: 3, next: "f4" },
-      { label: "Use public Wi‑Fi but avoid sensitive accounts", score: 1, next: "f4" },
-      { label: "Use your phone’s hotspot instead", score: 0, next: "f4" }
-    ]
-  },
+/* 12 */
+{
+question: "Clicking a suspicious link in an email can put your account or company at risk.",
+category: "phishing",
+options: [
+{ text: "True", score: 2, feedback: "Correct! One bad click can compromise accounts." },
+{ text: "False", score: 0, feedback: "Actually, this is a major cybersecurity risk." }
+]
+},
 
-  f4: {
-    id: "f4",
-    text: "Your home internet is slow, and you consider switching to public Wi‑Fi to finish a task.",
-    options: [
-      { label: "Always use public Wi‑Fi when it’s faster", score: 3, next: "f5" },
-      { label: "Sometimes use it for non‑sensitive work", score: 1, next: "f5" },
-      { label: "Never use public Wi‑Fi for work", score: 0, next: "f5" }
-    ]
-  },
+/* 13 */
+{
+question: "Do you know what phishing is?",
+category: "phishing",
+options: [
+{ text: "Yes", score: 2, feedback: "Good! Let’s test that knowledge." },
+{ text: "No", score: 0, feedback: "Phishing is fake messages trying to steal your info." },
+{ text: "Heard of it, but unsure", score: 1, feedback: "Good start! Now recognize it in action." }
+]
+},
 
-  f5: {
-    id: "f5",
-    text: "You need to summarize a confidential report quickly and have an AI tool open.",
-    options: [
-      { label: "Paste the entire report into the AI", score: 3, next: "f6" },
-      { label: "Remove names and paste most of it", score: 1, next: "f6" },
-      { label: "Ask AI for a generic outline instead", score: 0, next: "f6" },
-      { label: "Check your company’s AI policy first", score: 0, next: "f6" }
-    ]
-  },
+/* 14 */
+{
+question: "How confident are you in spotting phishing emails?",
+category: "phishing",
+options: [
+{ text: "Very confident", score: 2, feedback: "Let’s test that 😏" },
+{ text: "Somewhat confident", score: 1, feedback: "Not bad—room to improve." },
+{ text: "Not confident", score: 0, feedback: "Good honesty—this is where people get caught." }
+]
+},
 
-  f6: {
-    id: "f6",
-    text: "You get an email from someone claiming to be HR with a link to a 'required form'.",
-    options: [
-      { label: "Click the link immediately", score: 3, next: "f7" },
-      { label: "Hover over the link, then click", score: 2, next: "f7" },
-      { label: "Ignore the email", score: 0, next: "f7" },
-      { label: "Report the email to IT", score: 0, next: "f7" }
-    ]
-  },
+/* 15 */
+{
+question: "It is safe to log into work accounts on any public Wi-Fi network.",
+category: "wifi",
+options: [
+{ text: "True", score: 0, feedback: "Not safe—public Wi-Fi can expose your data." },
+{ text: "False", score: 2, feedback: "Correct!" }
+]
+},
 
-  f7: {
-    id: "f7",
-    text: "A webpage blocks you with a warning: 'This link may be unsafe. Continue anyway?'",
-    options: [
-      { label: "Click 'Continue (Unsafe)'", score: 3, next: "f8" },
-      { label: "Close the page", score: 0, next: "f8" }
-    ]
-  },
+/* 16 */
+{
+question: "Do you use public Wi-Fi (like at a coffee shop or library) to log into work or school accounts?",
+category: "wifi",
+options: [
+{ text: "Always", score: 0, feedback: "Convenient, but risky." },
+{ text: "Sometimes", score: 1, feedback: "Depends on activity." },
+{ text: "Never", score: 2, feedback: "Safe choice." }
+]
+},
 
-  f8: {
-    id: "f8",
-    text: "Your team debates whether AI tools keep and use the data people type into them.",
-    options: [
-      { label: "They definitely don’t keep the data", score: 2, next: "s1" },
-      { label: "They probably do keep and use it", score: 0, next: "s1" }
-    ]
-  },
+/* 17 */
+{
+question: "How do you feel about using two-factor or multi-factor authentication (MFA) for your accounts when it’s available?",
+category: "device",
+options: [
+{ text: "Always", score: 2, feedback: "Great! One of the best protections." },
+{ text: "Sometimes", score: 1, feedback: "Good, but use it more." },
+{ text: "Never", score: 0, feedback: "MFA is very important." }
+]
+},
 
-  // -------------------------
-  // PHASE 3 — DEEPER SCENARIOS (VARIED)
-  // -------------------------
+/* 18 */
+{
+question: "Using two-factor authentication makes accounts more secure.",
+category: "device",
+options: [
+{ text: "True", score: 2, feedback: "Correct!" },
+{ text: "False", score: 0, feedback: "MFA significantly improves security." }
+]
+},
 
-  s1: {
-    id: "s1",
-    text: "You receive an email saying your password setup failed and you must click a link to fix it.",
-    options: [
-      { label: "Click the link", score: 3, next: "s2" },
-      { label: "Hover to inspect the link first", score: 1, next: "s2" },
-      { label: "Go directly to the official company site instead", score: 0, next: "s2" },
-      { label: "Report the email to IT", score: 0, next: "s2" }
-    ]
-  },
+/* 19 */
+{
+question: "AI companies like ChatGPT keep the information users type into their tools and use it to train their models.",
+category: "ai",
+options: [
+{ text: "True", score: 2, feedback: "Correct—be careful what you share." },
+{ text: "False", score: 0, feedback: "Assume data may be stored." }
+]
+},
 
-  s2: {
-    id: "s2",
-    text: "You start seeing ads that look like login pages for tools your company uses.",
-    options: [
-      { label: "Click one of the ads to log in", score: 3, next: "s3" },
-      { label: "Hover and check the URL before deciding", score: 1, next: "s3" },
-      { label: "Ignore the ads and use official links only", score: 0, next: "s3" }
-    ]
-  },
+/* 20 */
+{
+question: "Do you ever share personal or work information with AI tools (like ChatGPT)?",
+category: "ai",
+options: [
+{ text: "Always", score: 0, feedback: "High risk—be careful." },
+{ text: "Sometimes", score: 1, feedback: "Depends what you share." },
+{ text: "Never", score: 2, feedback: "Safe approach." }
+]
+},
 
-  s3: {
-    id: "s3",
-    text: "While on public Wi‑Fi, your screen flickers and logs you out of your account.",
-    options: [
-      { label: "Log back in on the same network", score: 3, next: "s4" },
-      { label: "Switch to a more secure network first", score: 0, next: "s4" },
-      { label: "Change your password afterward", score: 1, next: "s4" }
-    ]
-  },
+/* 21 */
+{
+question: "How often do you update your computer, phone, or other devices when they prompt you to?",
+category: "device",
+options: [
+{ text: "Avoid it", score: 0, feedback: "Risky—updates fix security flaws." },
+{ text: "Only when required", score: 1, feedback: "Better than nothing." },
+{ text: "Important accounts only", score: 1, feedback: "Good but not enough." },
+{ text: "Enable it everywhere", score: 2, feedback: "Perfect!" }
+]
+},
 
-  s4: {
-    id: "s4",
-    text: "Two Wi‑Fi networks appear with the same name. One has a stronger signal.",
-    options: [
-      { label: "Pick the stronger one", score: 3, next: "s5" },
-      { label: "Ask an employee which network is official", score: 0, next: "s5" }
-    ]
-  },
+/* 22 */
+{
+question: "How often do you read a privacy policy or terms of service before using an app or AI tool?",
+category: "device",
+options: [
+{ text: "Always", score: 2, feedback: "Rare but excellent habit." },
+{ text: "Sometimes", score: 1, feedback: "Better than most." },
+{ text: "Never", score: 0, feedback: "Very common—but risky." }
+]
+},
 
-  s5: {
-    id: "s5",
-    text: "Your manager notices internal phrases from your report appear in an AI tool’s examples.",
-    options: [
-      { label: "Deny that you used AI with the report", score: 2, next: "s6" },
-      { label: "Admit what you did and explain", score: 1, next: "s6" },
-      { label: "Report the issue to your security team", score: 0, next: "s6" }
-    ]
-  },
+/* 23 */
+{
+question: "You download a new productivity app with camera/location/contacts permissions. You:",
+category: "device",
+options: [
+{ text: "Allow everything", score: 0, feedback: "Too much access 😬" },
+{ text: "Allow what seems necessary", score: 1, feedback: "Better." },
+{ text: "Deny most permissions", score: 1, feedback: "Safe but limited functionality." },
+{ text: "Review carefully", score: 2, feedback: "Best choice." }
+]
+},
 
-  s6: {
-    id: "s6",
-    text: "IT alerts you that your account was accessed from another country.",
-    options: [
-      { label: "Ignore the alert", score: 3, next: "s7" },
-      { label: "Reset your password immediately", score: 1, next: "s7" },
-      { label: "Call IT to confirm the alert", score: 0, next: "s7" }
-    ]
-  },
+/* 24 */
+{
+question: "A webpage shows: 'This link may be unsafe. Continue anyway?'",
+category: "phishing",
+options: [
+{ text: "Continue", score: 0, feedback: "Dangerous." },
+{ text: "Close", score: 2, feedback: "Smart choice." }
+]
+},
 
-  s7: {
-    id: "s7",
-    text: "A vendor emails you asking to update payment details using a link in the message.",
-    options: [
-      { label: "Click the link and update the info", score: 3, next: "s8" },
-      { label: "Verify the request with your manager or finance", score: 0, next: "s8" }
-    ]
-  },
+/* 25 */
+{
+question: "IT gives you a new laptop. You:",
+category: "device",
+options: [
+{ text: "Skip security", score: 0, feedback: "Risky." },
+{ text: "Basic only", score: 1, feedback: "Okay." },
+{ text: "Full protection", score: 2, feedback: "Best choice." }
+]
+},
 
-  s8: {
-    id: "s8",
-    text: "You see a highly personalized email referencing your department and a 'secure document' link.",
-    options: [
-      { label: "Click the link to view the document", score: 3, next: "end", },
-      { label: "Verify the email with IT or your manager first", score: 0, next: "end" }
-    ]
-  },
+/* 26 */
+{
+question: "You are working from a coffee shop. You:",
+category: "wifi",
+options: [
+{ text: "Open Wi-Fi", score: 0, feedback: "Unsafe." },
+{ text: "Avoid sensitive logins", score: 1, feedback: "Safer." },
+{ text: "Hotspot", score: 2, feedback: "Good." },
+{ text: "Hotspot + VPN", score: 2, feedback: "Best." }
+]
+},
+
+/* 27 */
+{
+question: "You get a security update prompt. You:",
+category: "device",
+options: [
+{ text: "Delay", score: 0, feedback: "Risky." },
+{ text: "1 hour", score: 1, feedback: "Better." },
+{ text: "Ignore", score: 0, feedback: "Bad." },
+{ text: "Update now", score: 2, feedback: "Best." }
+]
+},
+
+/* 28 */
+{
+question: "You need to summarize a confidential report using AI. You:",
+category: "ai",
+options: [
+{ text: "Paste full report", score: 0, feedback: "Dangerous." },
+{ text: "Partial", score: 1, feedback: "Still risky." },
+{ text: "Outline only", score: 2, feedback: "Safer." },
+{ text: "Check policy", score: 2, feedback: "Best." }
+]
+},
+
+/* 29 */
+{
+question: "You receive an HR email with a link. You:",
+category: "phishing",
+options: [
+{ text: "Click", score: 0, feedback: "Phishing risk." },
+{ text: "Hover", score: 1, feedback: "Better." },
+{ text: "Ignore", score: 1, feedback: "Okay." },
+{ text: "Report", score: 2, feedback: "Best." }
+]
+},
+
+/* 30 */
+{
+question: "Manager asks for payroll info urgently. You:",
+category: "phishing",
+options: [
+{ text: "Send", score: 0, feedback: "Risky." },
+{ text: "Email back", score: 0, feedback: "Still unsafe." },
+{ text: "Call to verify", score: 2, feedback: "Good." },
+{ text: "Contact HR", score: 2, feedback: "Best." }
+]
+},
+
+/* 31 */
+{
+question: "Need paid software. You:",
+category: "device",
+options: [
+{ text: "Cracked version", score: 0, feedback: "Dangerous." },
+{ text: "Random site", score: 0, feedback: "Unsafe." },
+{ text: "Ask for license", score: 2, feedback: "Good." },
+{ text: "Free alternative", score: 2, feedback: "Best." }
+]
+},
+
+/* 32 */
+{
+question: "Pop-up says virus detected. You:",
+category: "device",
+options: [
+{ text: "Download tool", score: 0, feedback: "Scam." },
+{ text: "Close", score: 2, feedback: "Good." },
+{ text: "Restart", score: 1, feedback: "Okay." },
+{ text: "Report IT", score: 2, feedback: "Best." }
+]
+},
+
+/* 33 */
+{
+question: "Urgent email about account closure. You:",
+category: "phishing",
+options: [
+{ text: "Click", score: 0, feedback: "Danger." },
+{ text: "Verify sender", score: 2, feedback: "Best." },
+{ text: "Ignore", score: 1, feedback: "Okay." }
+]
+}
+
+];
 
   // -------------------------
   // END NODE
