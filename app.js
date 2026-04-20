@@ -330,8 +330,8 @@ const questions = [
 function renderQuestion() {
   const q = questions[currentIndex];
 
-  document.getElementById("progress").textContent =
-    `Question ${currentIndex + 1} of ${questions.length}`;
+  const progressPercent = ((currentIndex) / questions.length) * 100;
+document.getElementById("progressBar").style.width = progressPercent + "%";
 
   document.getElementById("question").textContent = q.question;
 
