@@ -7,343 +7,412 @@ document.getElementById("startBtn").onclick = () => {
   renderNode();
 };
 
-// Simulation state
-let currentNodeId = "q1";
+let current = 0;
 let totalScore = 0;
-let answers = [];
 
-// All questions + scenarios
-const nodes = {
-  // -------------------------
-  // PHASE 1 — STARTER QUESTIONS
-  // -------------------------
-  
-  q1: {
-    id: "q1",
-    text: "Do you reuse passwords across multiple accounts?",
-    options: [
-      { label: "Yes", score: 2, next: "q2" },
-      { label: "No", score: 0, next: "q2" }
-    ]
-  },
-
-  q2: {
-    id: "q2",
-    text: "Do you often click “Accept All Cookies” without reading them?",
-    options: [
-      { label: "Yes", score: 2, next: "q3" },
-      { label: "No", score: 0, next: "q3" }
-    ]
-  },
-
-  q3: {
-    id: "q3",
-    text: "Do you use public Wi‑Fi to access important accounts (email, banking, work)?",
-    options: [
-      { label: "Yes", score: 2, next: "q4" },
-      { label: "No", score: 0, next: "q4" }
-    ]
-  },
-
-  q4: {
-    id: "q4",
-    text: "When using public Wi‑Fi, which best describes you?",
-    options: [
-      { label: "I log into anything I need", score: 2, next: "q5" },
-      { label: "I avoid sensitive accounts", score: 1, next: "q5" },
-      { label: "I never use public Wi‑Fi", score: 0, next: "q5" }
-    ]
-  },
-
-  q5: {
-    id: "q5",
-    text: "Do you ever paste personal or work information into AI tools (like ChatGPT)?",
-    options: [
-      { label: "Yes", score: 2, next: "q6" },
-      { label: "No", score: 0, next: "q6" }
-    ]
-  },
-
-  q6: {
-    id: "q6",
-    text: "Do you click on links in emails or messages from people you don’t know?",
-    options: [
-      { label: "Yes", score: 3, next: "q7" },
-      { label: "No", score: 0, next: "q7" }
-    ]
-  },
-
-  q7: {
-    id: "q7",
-    text: "If a webpage required you to click a link that might be unsafe, would you still click it?",
-    options: [
-      { label: "Yes", score: 3, next: "q8" },
-      { label: "No", score: 0, next: "q8" }
-    ]
-  },
-
-  q8: {
-    id: "q8",
-    text: "AI companies use user‑submitted data to train their models.",
-    options: [
-      { label: "True", score: 0, next: "f1" },
-      { label: "False", score: 2, next: "f1" }
-    ]
-  },
-
-  // -------------------------
-  // PHASE 2 — FOLLOW‑UP SCENARIOS
-  // -------------------------
-
-  f1: {
-    id: "f1",
-    text: "Your company account setup asks you to create your first work password.",
-    options: [
-      { label: "Reuse a password you already use", score: 3, next: "f2" },
-      { label: "Slightly change an old password", score: 2, next: "f2" },
-      { label: "Create a brand‑new password you can remember", score: 1, next: "f2" },
-      { label: "Use a password manager to generate one", score: 0, next: "f2" }
-    ]
-  },
-
-  f2: {
-    id: "f2",
-    text: "A site blocks you with a cookie banner before you can continue.",
-    options: [
-      { label: "Accept all cookies", score: 3, next: "f3" },
-      { label: "Accept only required cookies", score: 1, next: "f3" },
-      { label: "Open settings and adjust tracking", score: 0, next: "f3" },
-      { label: "Close the page and leave", score: 0, next: "f3" }
-    ]
-  },
-
-  f3: {
-    id: "f3",
-    text: "You’re at a coffee shop and need to log into your work dashboard.",
-    options: [
-      { label: "Use the open public Wi‑Fi", score: 3, next: "f4" },
-      { label: "Use public Wi‑Fi but avoid sensitive accounts", score: 1, next: "f4" },
-      { label: "Use your phone’s hotspot instead", score: 0, next: "f4" }
-    ]
-  },
-
-  f4: {
-    id: "f4",
-    text: "Your home internet is slow, and you consider switching to public Wi‑Fi to finish a task.",
-    options: [
-      { label: "Always use public Wi‑Fi when it’s faster", score: 3, next: "f5" },
-      { label: "Sometimes use it for non‑sensitive work", score: 1, next: "f5" },
-      { label: "Never use public Wi‑Fi for work", score: 0, next: "f5" }
-    ]
-  },
-
-  f5: {
-    id: "f5",
-    text: "You need to summarize a confidential report quickly and have an AI tool open.",
-    options: [
-      { label: "Paste the entire report into the AI", score: 3, next: "f6" },
-      { label: "Remove names and paste most of it", score: 1, next: "f6" },
-      { label: "Ask AI for a generic outline instead", score: 0, next: "f6" },
-      { label: "Check your company’s AI policy first", score: 0, next: "f6" }
-    ]
-  },
-
-  f6: {
-    id: "f6",
-    text: "You get an email from someone claiming to be HR with a link to a 'required form'.",
-    options: [
-      { label: "Click the link immediately", score: 3, next: "f7" },
-      { label: "Hover over the link, then click", score: 2, next: "f7" },
-      { label: "Ignore the email", score: 0, next: "f7" },
-      { label: "Report the email to IT", score: 0, next: "f7" }
-    ]
-  },
-
-  f7: {
-    id: "f7",
-    text: "A webpage blocks you with a warning: 'This link may be unsafe. Continue anyway?'",
-    options: [
-      { label: "Click 'Continue (Unsafe)'", score: 3, next: "f8" },
-      { label: "Close the page", score: 0, next: "f8" }
-    ]
-  },
-
-  f8: {
-    id: "f8",
-    text: "Your team debates whether AI tools keep and use the data people type into them.",
-    options: [
-      { label: "They definitely don’t keep the data", score: 2, next: "s1" },
-      { label: "They probably do keep and use it", score: 0, next: "s1" }
-    ]
-  },
-
-  // -------------------------
-  // PHASE 3 — DEEPER SCENARIOS (VARIED)
-  // -------------------------
-
-  s1: {
-    id: "s1",
-    text: "You receive an email saying your password setup failed and you must click a link to fix it.",
-    options: [
-      { label: "Click the link", score: 3, next: "s2" },
-      { label: "Hover to inspect the link first", score: 1, next: "s2" },
-      { label: "Go directly to the official company site instead", score: 0, next: "s2" },
-      { label: "Report the email to IT", score: 0, next: "s2" }
-    ]
-  },
-
-  s2: {
-    id: "s2",
-    text: "You start seeing ads that look like login pages for tools your company uses.",
-    options: [
-      { label: "Click one of the ads to log in", score: 3, next: "s3" },
-      { label: "Hover and check the URL before deciding", score: 1, next: "s3" },
-      { label: "Ignore the ads and use official links only", score: 0, next: "s3" }
-    ]
-  },
-
-  s3: {
-    id: "s3",
-    text: "While on public Wi‑Fi, your screen flickers and logs you out of your account.",
-    options: [
-      { label: "Log back in on the same network", score: 3, next: "s4" },
-      { label: "Switch to a more secure network first", score: 0, next: "s4" },
-      { label: "Change your password afterward", score: 1, next: "s4" }
-    ]
-  },
-
-  s4: {
-    id: "s4",
-    text: "Two Wi‑Fi networks appear with the same name. One has a stronger signal.",
-    options: [
-      { label: "Pick the stronger one", score: 3, next: "s5" },
-      { label: "Ask an employee which network is official", score: 0, next: "s5" }
-    ]
-  },
-
-  s5: {
-    id: "s5",
-    text: "Your manager notices internal phrases from your report appear in an AI tool’s examples.",
-    options: [
-      { label: "Deny that you used AI with the report", score: 2, next: "s6" },
-      { label: "Admit what you did and explain", score: 1, next: "s6" },
-      { label: "Report the issue to your security team", score: 0, next: "s6" }
-    ]
-  },
-
-  s6: {
-    id: "s6",
-    text: "IT alerts you that your account was accessed from another country.",
-    options: [
-      { label: "Ignore the alert", score: 3, next: "s7" },
-      { label: "Reset your password immediately", score: 1, next: "s7" },
-      { label: "Call IT to confirm the alert", score: 0, next: "s7" }
-    ]
-  },
-
-  s7: {
-    id: "s7",
-    text: "A vendor emails you asking to update payment details using a link in the message.",
-    options: [
-      { label: "Click the link and update the info", score: 3, next: "s8" },
-      { label: "Verify the request with your manager or finance", score: 0, next: "s8" }
-    ]
-  },
-
-  s8: {
-    id: "s8",
-    text: "You see a highly personalized email referencing your department and a 'secure document' link.",
-    options: [
-      { label: "Click the link to view the document", score: 3, next: "end", },
-      { label: "Verify the email with IT or your manager first", score: 0, next: "end" }
-    ]
-  },
-
-  // -------------------------
-  // END NODE
-  // -------------------------
-
-  end: {
-    id: "end",
-    text: "Thanks for completing your first month. View your cybersecurity risk summary below.",
-    options: []
-  }
+// CATEGORY TRACKING (IMPORTANT UPGRADE)
+let categories = {
+  password: 0,
+  phishing: 0,
+  wifi: 0,
+  ai: 0,
+  device: 0
 };
 
-// -------------------------
-// RENDERING + LOGIC
-// -------------------------
+const questions = [
 
-function renderNode() {
-  const node = nodes[currentNodeId];
-  const questionDiv = document.getElementById("question");
-  const optionsDiv = document.getElementById("options");
-  const resultDiv = document.getElementById("result");
+/* ================= PASSWORDS ================= */
 
-  questionDiv.textContent = node.text;
-  optionsDiv.innerHTML = "";
-  resultDiv.innerHTML = "";
+{
+  question: "Do you reuse passwords across accounts?",
+  category: "password",
+  options: [
+    { text: "Yes", score: 0, feedback: "One password reused = one breach affects everything 😬" },
+    { text: "No", score: 2, feedback: "Nice! Unique passwords keep you safer." }
+  ]
+},
 
-  if (!node.options || node.options.length === 0) {
-    showResult();
-    return;
+{
+  question: "Do you use a password manager?",
+  category: "password",
+  options: [
+    { text: "Yes", score: 2, feedback: "Smart choice—this is best practice." },
+    { text: "No", score: 1, feedback: "Manageable, but password managers are safer and easier." }
+  ]
+},
+
+{
+  question: "How often do you change important passwords?",
+  category: "password",
+  options: [
+    { text: "Every few months", score: 2, feedback: "Great habit!" },
+    { text: "Once a year", score: 1, feedback: "Decent, but more frequent is safer." },
+    { text: "Rarely/Never", score: 0, feedback: "Old passwords increase risk." }
+  ]
+},
+
+/* ================= PHISHING ================= */
+
+{
+  question: "Do you click links from unknown senders?",
+  category: "phishing",
+  options: [
+    { text: "Always", score: 0, feedback: "High risk—this is how phishing works 😬" },
+    { text: "Sometimes", score: 1, feedback: "Be careful—one click is enough." },
+    { text: "Never", score: 2, feedback: "Great instinct!" }
+  ]
+},
+
+{
+  question: "Do you check links before clicking?",
+  category: "phishing",
+  options: [
+    { text: "Always", score: 2, feedback: "Perfect habit." },
+    { text: "Sometimes", score: 1, feedback: "Good, but be consistent." },
+    { text: "Never", score: 0, feedback: "You’re clicking blindfolded 😭" }
+  ]
+},
+
+{
+  question: "Do you know what phishing is?",
+  category: "phishing",
+  options: [
+    { text: "Yes", score: 2, feedback: "Good awareness." },
+    { text: "No", score: 0, feedback: "Phishing is fake messages trying to steal your info." },
+    { text: "Heard of it", score: 1, feedback: "Good start—now recognize it in practice." }
+  ]
+},
+
+/* ================= WIFI ================= */
+
+{
+  question: "Do you use public Wi-Fi for important accounts?",
+  category: "wifi",
+  options: [
+    { text: "Always", score: 0, feedback: "Risky—data can be intercepted." },
+    { text: "Sometimes", score: 1, feedback: "Be cautious depending on activity." },
+    { text: "Never", score: 2, feedback: "Safe choice." }
+  ]
+},
+
+{
+  question: "Public Wi-Fi is safe for logins.",
+  category: "wifi",
+  options: [
+    { text: "True", score: 0, feedback: "Not safe—data can be exposed." },
+    { text: "False", score: 2, feedback: "Correct—avoid sensitive logins." }
+  ]
+},
+
+/* ================= AI ================= */
+
+{
+  question: "Do you share sensitive info with AI tools?",
+  category: "ai",
+  options: [
+    { text: "Always", score: 0, feedback: "High risk—assume data may be stored." },
+    { text: "Sometimes", score: 1, feedback: "Be selective with what you share." },
+    { text: "Never", score: 2, feedback: "Safe approach." }
+  ]
+},
+
+{
+  question: "Do AI tools use user data?",
+  category: "ai",
+  options: [
+    { text: "True", score: 2, feedback: "Correct—be mindful what you input." },
+    { text: "False", score: 0, feedback: "Not quite—assume data may be used." }
+  ]
+},
+
+/* ================= DEVICE ================= */
+
+{
+  question: "Do you install updates when prompted?",
+  category: "device",
+  options: [
+    { text: "Always", score: 2, feedback: "Perfect—updates fix vulnerabilities." },
+    { text: "Sometimes", score: 1, feedback: "Better than nothing." },
+    { text: "Never", score: 0, feedback: "Outdated systems are easy targets." }
+  ]
+},
+
+{
+  question: "Do you use MFA?",
+  category: "device",
+  options: [
+    { text: "Always", score: 2, feedback: "Excellent protection." },
+    { text: "Sometimes", score: 1, feedback: "Good, but use it everywhere." },
+    { text: "Never", score: 0, feedback: "MFA greatly improves security." }
+  ]
+}
+/* AI */
+{
+  question: "Do AI tools use your data?",
+  category: "ai",
+  options: [
+    { text: "True", score: 2, feedback: "Correct." },
+    { text: "False", score: 0, feedback: "Assume data may be used." }
+  ]
+},
+
+{
+  question: "Do you share info with AI tools?",
+  category: "ai",
+  options: [
+    { text: "Always", score: 0, feedback: "High risk." },
+    { text: "Sometimes", score: 1, feedback: "Be cautious." },
+    { text: "Never", score: 2, feedback: "Safe approach." }
+  ]
+},
+
+/* UPDATES */
+{
+  question: "Do you install updates?",
+  category: "device",
+  options: [
+    { text: "Always", score: 2, feedback: "Perfect." },
+    { text: "Sometimes", score: 1, feedback: "Okay." },
+    { text: "Never", score: 0, feedback: "Risky." }
+  ]
+},
+
+/* PRIVACY */
+{
+  question: "Do you read privacy policies?",
+  category: "device",
+  options: [
+    { text: "Always", score: 2, feedback: "Rare but excellent." },
+    { text: "Sometimes", score: 1, feedback: "Better than most." },
+    { text: "Never", score: 0, feedback: "Very common." }
+  ]
+},
+
+/* PERMISSIONS */
+{
+  question: "App requests camera/location/contacts. You:",
+  category: "device",
+  options: [
+    { text: "Allow all", score: 0, feedback: "Too much access." },
+    { text: "Allow needed", score: 1, feedback: "Okay." },
+    { text: "Review carefully", score: 2, feedback: "Best choice." }
+  ]
+},
+
+/* UNSAFE LINK */
+{
+  question: "Warning: unsafe link. Continue?",
+  category: "phishing",
+  options: [
+    { text: "Continue", score: 0, feedback: "Dangerous." },
+    { text: "Close", score: 2, feedback: "Smart." }
+  ]
+},
+
+/* LAPTOP SETUP */
+{
+  question: "Laptop setup choice:",
+  category: "device",
+  options: [
+    { text: "Skip security", score: 0, feedback: "Risky." },
+    { text: "Basic only", score: 1, feedback: "Okay." },
+    { text: "Full protection", score: 2, feedback: "Best." }
+  ]
+},
+
+/* PASSWORD SETUP */
+{
+  question: "Create password:",
+  category: "password",
+  options: [
+    { text: "Reuse", score: 0, feedback: "Bad habit." },
+    { text: "Modify old", score: 1, feedback: "Still weak." },
+    { text: "New", score: 2, feedback: "Good." },
+    { text: "Manager", score: 2, feedback: "Best." }
+  ]
+},
+
+/* WIFI SCENARIO */
+{
+  question: "Coffee shop Wi-Fi:",
+  category: "wifi",
+  options: [
+    { text: "Open Wi-Fi", score: 0, feedback: "Unsafe." },
+    { text: "Avoid sensitive", score: 1, feedback: "Okay." },
+    { text: "Hotspot", score: 2, feedback: "Good." },
+    { text: "VPN + hotspot", score: 2, feedback: "Best." }
+  ]
+},
+
+/* UPDATES */
+{
+  question: "Security update:",
+  category: "device",
+  options: [
+    { text: "Delay", score: 0, feedback: "Risky." },
+    { text: "1 hour", score: 1, feedback: "Better." },
+    { text: "Ignore", score: 0, feedback: "Bad." },
+    { text: "Update now", score: 2, feedback: "Best." }
+  ]
+},
+
+/* AI REPORT */
+{
+  question: "AI summary of confidential report:",
+  category: "ai",
+  options: [
+    { text: "Full paste", score: 0, feedback: "Dangerous." },
+    { text: "Partial", score: 1, feedback: "Still risky." },
+    { text: "Outline", score: 2, feedback: "Safer." },
+    { text: "Check policy", score: 2, feedback: "Best." }
+  ]
+},
+
+/* HR EMAIL */
+{
+  question: "HR email:",
+  category: "phishing",
+  options: [
+    { text: "Click", score: 0, feedback: "Phishing risk." },
+    { text: "Hover", score: 1, feedback: "Better." },
+    { text: "Ignore", score: 1, feedback: "Okay." },
+    { text: "Report", score: 2, feedback: "Best." }
+  ]
+},
+
+/* MANAGER REQUEST */
+{
+  question: "Manager asks for payroll info:",
+  category: "phishing",
+  options: [
+    { text: "Send", score: 0, feedback: "Scam risk." },
+    { text: "Email", score: 0, feedback: "Unsafe." },
+    { text: "Call", score: 2, feedback: "Verify first." },
+    { text: "HR", score: 2, feedback: "Best." }
+  ]
+},
+
+/* CRACKED SOFTWARE */
+{
+  question: "Need paid software:",
+  category: "device",
+  options: [
+    { text: "Cracked", score: 0, feedback: "Malware risk." },
+    { text: "Random site", score: 0, feedback: "Unsafe." },
+    { text: "Ask manager", score: 2, feedback: "Good." },
+    { text: "Free alternative", score: 2, feedback: "Best." }
+  ]
+},
+
+/* POPUP */
+{
+  question: "Virus pop-up:",
+  category: "device",
+  options: [
+    { text: "Download", score: 0, feedback: "Scam." },
+    { text: "Close", score: 2, feedback: "Good." },
+    { text: "Restart", score: 1, feedback: "Okay." },
+    { text: "Report", score: 2, feedback: "Best." }
+  ]
+},
+
+/* FINAL EMAIL */
+{
+  question: "Urgent account email:",
+  category: "phishing",
+  options: [
+    { text: "Click", score: 0, feedback: "Danger." },
+    { text: "Verify", score: 2, feedback: "Best." },
+    { text: "Ignore", score: 1, feedback: "Okay." }
+  ]
+}
+
+];
+
+/* ================= UI ================= */
+
+function loadQuestion() {
+  let q = questions[current];
+
+  document.getElementById("progress").innerText =
+    `Question ${current + 1} of ${questions.length}`;
+
+  document.getElementById("question-box").innerHTML =
+    `<h2>${q.question}</h2>`;
+
+  document.getElementById("feedback-box").innerHTML = "";
+
+  q.options.forEach(opt => {
+    document.getElementById("question-box").innerHTML +=
+      `<button onclick="selectAnswer(${opt.score}, '${opt.feedback}', '${q.category}')">
+        ${opt.text}
+      </button>`;
+  });
+}
+
+function selectAnswer(score, feedback, category) {
+  totalScore += score;
+  categories[category] += score;
+
+  document.getElementById("feedback-box").innerText = feedback;
+}
+
+function nextQuestion() {
+  current++;
+
+  if (current < questions.length) {
+    loadQuestion();
+  } else {
+    showResults();
+  }
+}
+
+/* ================= RESULTS ================= */
+
+function showResults() {
+
+  document.getElementById("quiz-container").style.display = "none";
+  document.getElementById("result-screen").style.display = "block";
+
+  let maxScore = questions.length * 2;
+  let percent = Math.round((totalScore / maxScore) * 100);
+
+  document.getElementById("score").innerText = `Score: ${percent}%`;
+
+  let level = "";
+  if (percent >= 80) level = "🟢 Low Risk";
+  else if (percent >= 50) level = "🟡 Moderate Risk";
+  else level = "🔴 High Risk";
+
+  document.getElementById("level").innerText = level;
+
+  // CATEGORY FEEDBACK
+  let feedbackText = "<h3>Personalized Recommendations</h3>";
+
+  if (categories.password <= 2) {
+    feedbackText += "<p>🔐 Passwords: Use unique passwords and a password manager.</p>";
   }
 
-  node.options.forEach(option => {
-    const btn = document.createElement("button");
-    btn.textContent = option.label;
-    btn.onclick = () => handleChoice(option);
-    optionsDiv.appendChild(btn);
-  });
+  if (categories.phishing <= 2) {
+    feedbackText += "<p>🎣 Phishing: Be careful with emails and unknown links.</p>";
+  }
+
+  if (categories.wifi <= 2) {
+    feedbackText += "<p>📶 Wi-Fi: Avoid public Wi-Fi for sensitive logins.</p>";
+  }
+
+  if (categories.ai <= 2) {
+    feedbackText += "<p>🤖 AI: Avoid sharing sensitive or confidential data.</p>";
+  }
+
+  if (categories.device <= 2) {
+    feedbackText += "<p>💻 Device Security: Keep updates and MFA enabled.</p>";
+  }
+
+  document.getElementById("category-feedback").innerHTML = feedbackText;
+
+  document.getElementById("summary").innerHTML =
+    "<p>You’re developing real-world cybersecurity awareness. Small changes can significantly improve your digital safety.</p>";
 }
 
-function handleChoice(option) {
-  totalScore += option.score;
-answers.push({
-  questionId: currentNodeId,
-  answer: option.label,
-  score: option.score
-});
-  currentNodeId = option.next;
-  renderNode();
-}
-
-function showResult() {
-  saveResultsToFirebase();
-  const resultDiv = document.getElementById("result");
-  let profile;
-
-  if (totalScore >= 30) profile = "High Risk";
-  else if (totalScore >= 15) profile = "Moderate Risk";
-  else profile = "Low Risk";
-
-  resultDiv.innerHTML = `
-    <h3>Your Total Risk Score: ${totalScore}</h3>
-    <p>Risk Level: <strong>${profile}</strong></p>
-  `;
-}
-
-
-function getRiskLevel(score) {
-  if (score >= 30) return "High Risk";
-  if (score >= 15) return "Moderate Risk";
-  return "Low Risk";
-}
-
-function saveResultsToFirebase() {
-  const participantId = Math.random().toString(36).substring(2, 10);
-
-  db.collection("responses").add({
-    participantId: participantId,
-    answers: answers, // full array of {questionId, answer, score}
-    totalScore: totalScore,
-    riskLevel: getRiskLevel(totalScore),
-    timestamp: new Date()
-  })
-  .then(() => {
-    console.log("Saved to Firebase");
-  })
-  .catch((error) => {
-    console.error("Error saving data:", error);
-  });
-}
+loadQuestion();
