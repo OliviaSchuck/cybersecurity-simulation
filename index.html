@@ -1,29 +1,40 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Your First Month at Work</title>
-  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<title>Cybersecurity Simulation</title>
+<link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
-  <div id="intro">
-    <h1>Your First Month at Work</h1>
-    <p>
-      This short interactive simulation places you in everyday workplace situations. 
-      You’ll make quick decisions about technology, communication, and digital tools 
-      as you navigate your first month on the job. There are no right or wrong answers — 
-      just choose what you would realistically do.
-    </p>
-    <button id="startBtn">Start Simulation</button>
-  </div>
+<div id="quiz-container">
 
-  <div id="app">
-    <h1>Your First Month at Work</h1>
-    <div id="question"></div>
-    <div id="options"></div>
-  </div>
+  <h1>Cybersecurity Awareness Simulation</h1>
 
-  <div id="result"></div>
+  <div id="progress"></div>
+
+  <div id="question-box"></div>
+
+  <div id="feedback-box"></div>
+
+  <button onclick="nextQuestion()">Next</button>
+
+</div>
+
+<div id="result-screen" style="display:none;">
+  <h1>Your Cybersecurity Risk Report</h1>
+
+  <h2 id="score"></h2>
+  <h3 id="level"></h3>
+
+  <div id="summary"></div>
+  <div id="category-feedback"></div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
 
 
 
