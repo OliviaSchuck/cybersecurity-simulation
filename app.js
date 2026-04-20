@@ -89,6 +89,7 @@ const questions = [
   options: [
     { text: "Yes", score: 2, feedback: "Good! This is one of the most common attack methods." },
     { text: "No", score: 0, feedback: "This is important! Many attacks rely on tricking people into giving away sensitive information instead of hacking systems directly." }
+  ]
 },
 
 {
