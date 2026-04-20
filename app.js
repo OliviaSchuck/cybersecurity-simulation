@@ -77,7 +77,7 @@ const questions = [
 },
 
 {
-  question: "When a wensite asks you to accept cookies, do you usually click ""Accept"" without reading?",
+  question: "When a website asks you to accept cookies, do you usually click 'Accept' without reading?",
   options: [
     { text: "Yes", score: 0, feedback: "Quick click...but you might be sharing more data than you realize." },
     { text: "No", score: 2, feedback: "Nice! You're paying attention to your privacy." }
@@ -88,7 +88,7 @@ const questions = [
   question: "Do you know what ""social engineering"" means in cybersecurity?",
   options: [
     { text: "Yes", score: 2, feedback: "Good! This is one of the most common attack methods." },
-    { text: "No", score: 0, feedback: "This is important! Many attacks rely on tricking people into giving away sensitive information instead of hacking systems directly.
+    { text: "No", score: 0, feedback: "This is important! Many attacks rely on tricking people into giving away sensitive information instead of hacking systems directly." }
 },
 
 {
@@ -257,8 +257,8 @@ const questions = [
 {
   question: "Your computer asks you to install a security update while you’re busy. Would you:",
   options: [
-    { text: ""Remind me in 24 hours"", score: 0, feedback: "Delaying leaves you exposed longer." },
-    { text: "“Remind me in 1 hour”", score: 1, feedback: "Better, but sooner is safer." },
+    { text: "'Remind me in 24 hours'", score: 0, feedback: "Delaying leaves you exposed longer." },
+    { text: "'Remind me in 1 hour'", score: 1, feedback: "Better, but sooner is safer." },
     { text: "Ignore", score: 0, feedback: "Hackers love outdated systems." },
     { text: "Update now", score: 2, feedback: "Best choice—quick update, better security." }
   ]
@@ -270,7 +270,7 @@ const questions = [
     { text: "Paste full report into an AI tool", score: 0, feedback: "That’s a data leak waiting to happen." },
     { text: "Remove names and paste most of it into an AI tool", score: 1, feedback: "Better, but still risky." },
     { text: "Ask AI to create an outline only", score: 2, feedback: "Safer approach." },
-    { text: "Check company AI policy firt", score: 2, feedback: "Best choice! Always follow guidelines." }
+    { text: "Check company AI policy first", score: 2, feedback: "Best choice! Always follow guidelines." }
   ]
 },
 
@@ -362,7 +362,7 @@ function renderQuestion() {
         } else {
           showResults();
         }
-      }, 800);
+      }, 1200);
     };
 
     optionsDiv.appendChild(btn);
@@ -374,8 +374,8 @@ function showResults() {
   document.getElementById("app").style.display = "none";
 
   let level;
-  if (totalScore >= 40) level = "Low Risk";
-  else if (totalScore >= 20) level = "Moderate Risk";
+  if (totalScore >= 55) level = "Low Risk";
+  else if (totalScore >= 30) level = "Moderate Risk";
   else level = "High Risk";
 
   document.getElementById("result").innerHTML = `
