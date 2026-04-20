@@ -31,167 +31,166 @@ const questions = [
 },
 
 {
-  question: "Who is responsible for cybersecurity at a company?",
+  question: "Who do you think is responsible for cybersecurity at a company?",
   options: [
-    { text: "IT handles it", score: 0, feedback: "IT helps, but they can’t stop every risky click." },
-    { text: "Security software", score: 0, feedback: "Tools help, but people are the biggest factor." },
-    { text: "Management", score: 0, feedback: "Leadership matters, but everyone plays a role." },
-    { text: "Everyone", score: 2, feedback: "Correct! Cybersecurity is a team effort 🤝" }
+    { text: "IT handles cybersecurity", score: 0, feedback: "IT helps, but they can’t stop every risky click." },
+    { text: "Security software handles it", score: 0, feedback: "Tools help, but people are the biggest factor." },
+    { text: "Management handles it", score: 0, feedback: "Leadership matters, but everyone plays a role." },
+    { text: "Everyone shares responsibility", score: 2, feedback: "Correct! Cybersecurity is a team effort 🤝" }
   ]
 },
 
 {
-  question: "Do you use antivirus or endpoint protection?",
+  question: "Do you use antivirus or endpoint protection on your device?",
   options: [
     { text: "Always", score: 2, feedback: "Great! This adds an extra layer of protection." },
     { text: "Sometimes", score: 1, feedback: "Helpful, but consistency matters." },
     { text: "Never", score: 0, feedback: "Risky—your device is exposed." },
-    { text: "Not sure", score: 0, feedback: "Worth checking your settings." }
+    { text: "Not sure", score: 0, feedback: "If you're not sure, it's worth checking your device settings." }
   ]
 },
 
 {
-  question: "Do you reuse passwords?",
+  question: "Do you use the same password for more than one account?",
   options: [
     { text: "Yes", score: 0, feedback: "One password reused = one breach affecting everything 😬" },
-    { text: "No", score: 2, feedback: "Nice! Unique passwords make you safer." }
+    { text: "No", score: 2, feedback: "Nice! Unique passwords make you much harder to hack even though they may be inconvenient." }
   ]
 },
 
 {
-  question: "Do you use a password manager?",
+  question: "Do you use a password manager to keep your passwords safe?",
   options: [
-    { text: "Yes", score: 2, feedback: "Smart! One of the best habits." },
-    { text: "No", score: 1, feedback: "They securely store passwords so you only remember one." }
+    { text: "Yes", score: 2, feedback: "Smart! This is one of the best security habits." },
+    { text: "No", score: 1, feedback: "Understandable, but password managers make life easier and safer. It is a tool that securely stores and automatically fills in your passwords so you only have to remember one master password." }
   ]
 },
 
 {
-  question: "How often do you change important passwords?",
+  question: "How often do you change passwords for important accounts (email, banking, school/work)?",
   options: [
-    { text: "Every few months", score: 2, feedback: "Great! Staying ahead." },
+    { text: "Every few months", score: 2, feedback: "Great! You're staying ahead of potential breaches." },
     { text: "Once a year", score: 1, feedback: "Decent, but more often is safer." },
-    { text: "Rarely", score: 0, feedback: "Risky—could be compromised." },
-    { text: "Never", score: 0, feedback: "That password might not be private 👀" }
+    { text: "Rarely", score: 0, feedback: "Risky—old passwords can be compromised." },
+    { text: "Never", score: 0, feedback: "That password might not be as private as you think 👀" }
   ]
 },
 
 {
-  question: "Do you accept cookies without reading?",
+  question: "When a wensite asks you to accept cookies, do you usually click ""Accept"" without reading?",
   options: [
-    { text: "Yes", score: 0, feedback: "You may be sharing more data than you think." },
-    { text: "No", score: 2, feedback: "Nice! You care about privacy." }
+    { text: "Yes", score: 0, feedback: "Quick click...but you might be sharing more data than you realize." },
+    { text: "No", score: 2, feedback: "Nice! You're paying attention to your privacy." }
   ]
 },
 
 {
-  question: "Do you know what social engineering is?",
+  question: "Do you know what ""social engineering"" means in cybersecurity?",
   options: [
-    { text: "Yes", score: 2, feedback: "Good! Very common attack method." },
-    { text: "No", score: 0, feedback: "Attackers often trick people instead of hacking systems." }
+    { text: "Yes", score: 2, feedback: "Good! This is one of the most common attack methods." },
+    { text: "No", score: 0, feedback: "This is important! Many attacks rely on tricking people into giving away sensitive information instead of hacking systems directly.
+},
+
+{
+  question: "Do you click on links in emails or messages from unknown senders?",
+  options: [
+    { text: "Always", score: 0, feedback: "You’re a prime target for phishing 😬" },
+    { text: "Sometimes", score: 1, feedback: "Risky—one click is all it takes." },
+    { text: "Never", score: 2, feedback: "Great instinct! Keep avoiding unknown links" }
   ]
 },
 
 {
-  question: "Do you click unknown links?",
+  question: "How often do you check where a link goes (hover over it) before clicking in emails from unknown sources?",
   options: [
-    { text: "Always", score: 0, feedback: "You’re a phishing target 😬" },
-    { text: "Sometimes", score: 1, feedback: "Risky—one click is enough." },
-    { text: "Never", score: 2, feedback: "Great instinct!" }
+    { text: "Always", score: 2, feedback: "Yes! This is a simple but powerful habit." },
+    { text: "Sometimes", score: 1, feedback: "Good, but consistency matters." },
+    { text: "Rarely", score: 0, feedback: "You're taking a risk by not checking links." },
+    { text: "Never", score: 0, feedback: "You're basically clicking blindfolded." }
   ]
 },
 
 {
-  question: "Do you check links before clicking?",
+  question: "Clicking a suspicious link in an email can put your account or company at risk.",
   options: [
-    { text: "Always", score: 2, feedback: "Strong habit." },
-    { text: "Sometimes", score: 1, feedback: "Be consistent." },
-    { text: "Rarely", score: 0, feedback: "Risky behavior." },
-    { text: "Never", score: 0, feedback: "Clicking blindfolded." }
-  ]
-},
-
-{
-  question: "Suspicious links can compromise accounts.",
-  options: [
-    { text: "True", score: 2, feedback: "Correct!" },
-    { text: "False", score: 0, feedback: "They are a major risk." }
+    { text: "True", score: 2, feedback: "Correct! One bad click can compromise accounts" },
+    { text: "False", score: 0, feedback: "Actually, suspicious links are a major risk." }
   ]
 },
 
 {
   question: "Do you know what phishing is?",
   options: [
-    { text: "Yes", score: 2, feedback: "Let’s test that." },
-    { text: "No", score: 0, feedback: "Fake messages that steal info." },
-    { text: "Heard of it", score: 1, feedback: "Now learn to recognize it." }
+    { text: "Yes", score: 2, feedback: "Good! Now let's see if you can spot it in action." },
+    { text: "No", score: 0, feedback: "Phishing is one of the most common attacks. It is when scammers send fake messages (like emails or texts) that look real to trick you into giving up personal information like passwords or credit card details." },
+    { text: "Heard of it", score: 1, feedback: "Good start! recognizing it is the next step. Phishing is when scammers send fake messages (like emails or texts) that look real to trick you into giving up personal information like passwords or credit card details." }
   ]
 },
 
 {
-  question: "Confidence in spotting phishing?",
+  question: "How confident are you in spotting phishing email?",
   options: [
-    { text: "Very confident", score: 2, feedback: "Let’s test that 😏" },
-    { text: "Somewhat", score: 1, feedback: "Room to improve." },
-    { text: "Not confident", score: 0, feedback: "Good honesty." }
+    { text: "Very confident", score: 2, feedback: "Confident... let’s test that 😏" },
+    { text: "Somewhat confident", score: 1, feedback: "Not bad—there’s room to improve." },
+    { text: "Not confident", score: 0, feedback: "Good honesty—this is where people get caught." }
   ]
 },
 
 {
-  question: "Public Wi-Fi is safe for work logins.",
+  question: "It is safe to log into work accounts on any public Wi-Fi network.",
   options: [
-    { text: "True", score: 0, feedback: "Not safe." },
-    { text: "False", score: 2, feedback: "Correct!" }
+    { text: "True", score: 0, feedback: "Not quite. Public Wi-Fi isn’t secure for sensitive logins. Attackers on the same network can intercept your data or trick you into connecting to fake hotspots." },
+    { text: "False", score: 2, feedback: "Correct! Public Wi-Fi can expose your data." }
   ]
 },
 
 {
-  question: "Do you use public Wi-Fi for accounts?",
+  question: "Do you use public Wi‑Fi (like at a coffee shop or library) to log into work or school accounts?",
   options: [
-    { text: "Always", score: 0, feedback: "Risky." },
-    { text: "Sometimes", score: 1, feedback: "Be cautious." },
-    { text: "Never", score: 2, feedback: "Safe choice." }
+    { text: "Always", score: 0, feedback: "Convenient, but risky for important accounts." },
+    { text: "Sometimes", score: 1, feedback: "Depends what you’re doing—still be cautious." },
+    { text: "Never", score: 2, feedback: "Safe choice—you’re avoiding common risks." }
   ]
 },
 
 {
-  question: "Do you use MFA?",
+  question: "How do you feel about using two-factor or multi-factor authentication (MFA) for your accounts when it’s available?",
   options: [
-    { text: "Always", score: 2, feedback: "Excellent." },
-    { text: "Sometimes", score: 1, feedback: "Use it more." },
-    { text: "Never", score: 0, feedback: "Important protection missing." }
+    { text: "Always", score: 2, feedback: "Great! This is one of the best protections you can have." },
+    { text: "Sometimes", score: 1, feedback: "Good, but why not use it everywhere?" },
+    { text: "Never", score: 0, feedback: "Skipping MFA makes accounts much easier to break into." }
   ]
 },
 
 {
-  question: "MFA improves security.",
+  question: "Using two-factor or multi-factor authentication (MFA) makes your accounts more secure.",
   options: [
-    { text: "True", score: 2, feedback: "Correct!" },
-    { text: "False", score: 0, feedback: "It greatly improves security." }
+    { text: "True", score: 2, feedback: "Correct! MFA adds a strong layer of security." },
+    { text: "False", score: 0, feedback: "Actually, MFA significantly improves account security." }
   ]
 },
 
 {
-  question: "AI tools may store your data.",
+  question: "AI companies like ChatGPT keep the information users type into their tools and use it to train their models.",
   options: [
-    { text: "True", score: 2, feedback: "Be careful what you share." },
-    { text: "False", score: 0, feedback: "Assume it could be stored." }
+    { text: "True", score: 2, feedback: "Correct! Be mindful of what you share." },
+    { text: "False", score: 0, feedback: "Not quite. Assume anything you type could be stored." }
   ]
 },
 
 {
-  question: "Do you share info with AI?",
+  question: "Do you ever share personal or work information with AI tools (like ChatGPT)?",
   options: [
-    { text: "Always", score: 0, feedback: "High risk." },
-    { text: "Sometimes", score: 1, feedback: "Be cautious." },
-    { text: "Never", score: 2, feedback: "Safe approach." }
+    { text: "Always", score: 0, feedback: "Careful—this could expose sensitive information." },
+    { text: "Sometimes", score: 1, feedback: "Depends what you’re sharing—be cautious." },
+    { text: "Never", score: 2, feedback: "Safe approach, especially for confidential data." }
   ]
 },
 
 {
-  question: "How often do you update devices?",
+  question: "How often do you update your computer, phone, or other devices when they prompt you to?",
   options: [
-    { text: "Avoid", score: 0, feedback: "Security risk." },
+    { text: "Avoid it", score: 0, feedback: "Security risk." },
     { text: "Only when required", score: 1, feedback: "Better than nothing." },
     { text: "Important only", score: 1, feedback: "All devices matter." },
     { text: "Always", score: 2, feedback: "Perfect!" }
@@ -199,128 +198,128 @@ const questions = [
 },
 
 {
-  question: "Do you read privacy policies?",
+  question: "How often do you read a privacy policy or terms of service before using an app or AI tool?",
   options: [
-    { text: "Always", score: 2, feedback: "Top 1% behavior." },
+    { text: "Always", score: 2, feedback: "Respect—you're in the top 1%." },
     { text: "Sometimes", score: 1, feedback: "Better than nothing." },
-    { text: "Never", score: 0, feedback: "Very common 😅" }
+    { text: "Never", score: 0, feedback: "No one reads them... but maybe skim a little 😅" }
   ]
 },
 
 {
-  question: "App asks for permissions.",
+  question: "You download a new productivity app, and it shows an app permission pop-up that asks for access to your camera, location, and contacts. Would you:",
   options: [
-    { text: "Allow all", score: 0, feedback: "Too much access 😬" },
-    { text: "Allow necessary", score: 1, feedback: "Better." },
-    { text: "Deny most", score: 1, feedback: "Safe but limited." },
-    { text: "Review all", score: 2, feedback: "Best choice." }
+    { text: "Allow all", score: 0, feedback: "Why does this app need ALL that access 😬" },
+    { text: "Allow what seems necessary", score: 1, feedback: "Good! You're limiting exposure." },
+    { text: "Deny most permissions", score: 1, feedback: "Safe, but some apps may not function fully." },
+    { text: "Review each permission carefully", score: 2, feedback: "Best choice—you stay in control." }
   ]
 },
 
 {
-  question: "Unsafe website warning.",
+  question: "A webpage you’re trying to open blocks you with a warning: 'This link may be unsafe. Continue anyway?'  Would you:",
   options: [
-    { text: "Continue", score: 0, feedback: "Dangerous." },
-    { text: "Close", score: 2, feedback: "Smart." }
+    { text: " CLick 'Continue (Unsafe)'", score: 0, feedback: "You saw ‘unsafe’ and still went for it 😭" },
+    { text: "Close", score: 2, feedback: "Smart! Warnings exist for a reason." }
   ]
 },
 
 {
-  question: "New work laptop setup.",
+  question: "IT gives you your new work laptop and asks you to configure it.  Would you:",
   options: [
-    { text: "Skip security", score: 0, feedback: "Risky." },
-    { text: "Required only", score: 1, feedback: "Okay." },
-    { text: "Recommended", score: 2, feedback: "Good." },
-    { text: "Full + updates", score: 2, feedback: "Perfect." }
+    { text: "Skip optional security settings to finish faster", score: 0, feedback: "Fast now, risky later." },
+    { text: "Enable only required settings", score: 1, feedback: "Okay, but more protection is better." },
+    { text: "Enable recommended protections", score: 2, feedback: "Good setup." },
+    { text: "Enable protections + automatic updates", score: 2, feedback: "Perfect—secure from the start." }
   ]
 },
 
 {
-  question: "Create work password.",
+  question: "Your company account setup asks you to create your first work password. Would You:",
   options: [
-    { text: "Reuse", score: 0, feedback: "Bad idea." },
-    { text: "Slight change", score: 1, feedback: "Still predictable." },
-    { text: "New", score: 2, feedback: "Good." },
-    { text: "Password manager", score: 2, feedback: "Best." }
+    { text: "Use a password you already use elsewhere so it’s easy to remember", score: 0, feedback: "Convenient… until one breach unlocks everything." },
+    { text: "Slightly change an old password", score: 1, feedback: "Better, but still predictable." },
+    { text: "Make a brand-new password you can remember", score: 2, feedback: "Good! Unique is better!" },
+    { text: "Use a password manager to generate a strong password for you to use", score: 2, feedback: "Best choice! Strong and secure!" }
   ]
 },
 
 {
-  question: "Working from coffee shop.",
+  question: "You are working remotely from a coffee shop. Would you:",
   options: [
-    { text: "Open Wi-Fi", score: 0, feedback: "Unsafe." },
-    { text: "Avoid sensitive", score: 1, feedback: "Better." },
-    { text: "Hotspot", score: 2, feedback: "Good." },
-    { text: "Hotspot + VPN", score: 2, feedback: "Best." }
+    { text: "Use the open Wi-Fi", score: 0, feedback: "Free Wi-Fi… and free access to your data 😬" },
+    { text: "Use Wi-Fi but avoid logging into important accounts", score: 1, feedback: "Safer, but still some risk." },
+    { text: "Use your phone’s hotspot", score: 2, feedback: "Good—more secure than public Wi-Fi." },
+    { text: "Use your hotspot and a VPN for extra security", score: 2, feedback: "Best! Extra protection layer." }
   ]
 },
 
 {
-  question: "Security update prompt.",
+  question: "Your computer asks you to install a security update while you’re busy. Would you:",
   options: [
-    { text: "24 hrs", score: 0, feedback: "Too long." },
-    { text: "1 hr", score: 1, feedback: "Better." },
-    { text: "Ignore", score: 0, feedback: "Bad." },
-    { text: "Update now", score: 2, feedback: "Best." }
+    { text: ""Remind me in 24 hours"", score: 0, feedback: "Delaying leaves you exposed longer." },
+    { text: "“Remind me in 1 hour”", score: 1, feedback: "Better, but sooner is safer." },
+    { text: "Ignore", score: 0, feedback: "Hackers love outdated systems." },
+    { text: "Update now", score: 2, feedback: "Best choice—quick update, better security." }
   ]
 },
 
 {
-  question: "Using AI for confidential data.",
+  question: "You need to quickly summarize a confidential report using AI. Would you:",
   options: [
-    { text: "Paste full", score: 0, feedback: "Data leak risk." },
-    { text: "Partial", score: 1, feedback: "Still risky." },
-    { text: "Outline", score: 2, feedback: "Safer." },
-    { text: "Check policy", score: 2, feedback: "Best." }
+    { text: "Paste full report into an AI tool", score: 0, feedback: "That’s a data leak waiting to happen." },
+    { text: "Remove names and paste most of it into an AI tool", score: 1, feedback: "Better, but still risky." },
+    { text: "Ask AI to create an outline only", score: 2, feedback: "Safer approach." },
+    { text: "Check company AI policy firt", score: 2, feedback: "Best choice! Always follow guidelines." }
   ]
 },
 
 {
-  question: "HR email link.",
+  question: "You get an email that looks like it’s from HR, asking you to click a link to a 'required form'. Would you:",
   options: [
-    { text: "Click", score: 0, feedback: "Phishing risk." },
-    { text: "Hover then click", score: 1, feedback: "Still risky." },
-    { text: "Ignore", score: 1, feedback: "Okay." },
-    { text: "Report", score: 2, feedback: "Best." }
+    { text: "Click it right away", score: 0, feedback: "And just like that… credentials gone." },
+    { text: "Hover over the link first, then click", score: 1, feedback: "Still risky—verification matters." },
+    { text: "Ignore the email", score: 1, feedback: "Safe, but verify through official channels." },
+    { text: "Report it to IT/security", score: 2, feedback: "Best choice! Protects you and others." }
   ]
 },
 
 {
-  question: "Manager asks for payroll info.",
+  question: "You get a voicemail or message from someone claiming to be your manager asking for your payroll info urgently. Would you:",
   options: [
-    { text: "Send", score: 0, feedback: "Scam tactic." },
-    { text: "Email back", score: 0, feedback: "Still risky." },
-    { text: "Call", score: 2, feedback: "Good." },
-    { text: "Contact HR", score: 2, feedback: "Best." }
+    { text: "Send the info immediately", score: 0, feedback: "Urgency is a classic scam tactic." },
+    { text: "Reply by email", score: 0, feedback: "Still risky—could be compromised." },
+    { text: "Call them directly to verify", score: 2, feedback: "Good! Verify identity first." },
+    { text: "Contact HR/security first", score: 2, feedback: "Best! Safe and verified." }
   ]
 },
 
 {
-  question: "Need paid software.",
+  question: "You need a paid tool for a project but don’t want to pay. Would you:",
   options: [
-    { text: "Cracked", score: 0, feedback: "Dangerous 💀" },
-    { text: "Random site", score: 0, feedback: "Malware risk." },
-    { text: "Ask license", score: 2, feedback: "Good." },
-    { text: "Free alt", score: 2, feedback: "Best." }
+    { text: "Download a cracked version", score: 0, feedback: "Free software, expensive consequences 💀" },
+    { text: "Download a free version from a random website", score: 0, feedback: "High malware risk." },
+    { text: "Ask your manager or instructor about licenses", score: 2, feedback: "Good—use official resources." },
+    { text: "Find a legitimate free alternative", score: 2, feedback: "Best choice! Safe and legal." }
   ]
 },
 
 {
-  question: "Virus popup.",
+  question: "A pop-up says your computer is infected and offers a “free scan.” You:",
   options: [
-    { text: "Download", score: 0, feedback: "Scam." },
-    { text: "Close", score: 2, feedback: "Good." },
-    { text: "Restart", score: 1, feedback: "Okay." },
-    { text: "Report", score: 2, feedback: "Best." }
+    { text: "Download the recommended software", score: 0, feedback: "That ‘fix’ is probably the problem." },
+    { text: "Close the pop-up", score: 2, feedback: "Safer. Don’t trust random pop-ups." },
+    { text: "Restart your computer", score: 1, feedback: "Okay, but not a full solution." },
+    { text: "Report it to IT/security", score: 2, feedback: "Best choice! Handled safely." }
   ]
 },
 
 {
-  question: "Urgent email warning.",
+  question: "You get an email saying you need to take urgent action (like account closure), you:",
   options: [
-    { text: "Click", score: 0, feedback: "Red flag." },
-    { text: "Verify", score: 2, feedback: "Best." },
-    { text: "Ignore", score: 1, feedback: "Okay." }
+    { text: "Click immediately", score: 0, feedback: "Urgency is a phishing red flag." },
+    { text: "Verify the sender first", score: 2, feedback: "Best choice! Pause and check." },
+    { text: "Ignore", score: 1, feedback: "Safe, but always verify if unsure." }
   ]
 }
 
