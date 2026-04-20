@@ -438,4 +438,6 @@ function showResults() {
     "<p>You’re building real-world cybersecurity awareness.</p>";
 }
 
-loadQuestion();
+window.onload = function () {
+  loadQuestion();
+};
