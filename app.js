@@ -85,7 +85,7 @@ const questions = [
 },
 
 {
-  question: "Do you know what ""social engineering"" means in cybersecurity?",
+  question: "Do you know what "'social engineering'" means in cybersecurity?",
   options: [
     { text: "Yes", score: 2, feedback: "Good! This is one of the most common attack methods." },
     { text: "No", score: 0, feedback: "This is important! Many attacks rely on tricking people into giving away sensitive information instead of hacking systems directly." }
@@ -128,7 +128,7 @@ const questions = [
 },
 
 {
-  question: "How confident are you in spotting phishing email?",
+  question: "How confident are you in spotting phishing emails?",
   options: [
     { text: "Very confident", score: 2, feedback: "Confident... let’s test that 😏" },
     { text: "Somewhat confident", score: 1, feedback: "Not bad—there’s room to improve." },
@@ -219,7 +219,7 @@ const questions = [
 {
   question: "A webpage you’re trying to open blocks you with a warning: 'This link may be unsafe. Continue anyway?'  Would you:",
   options: [
-    { text: " CLick 'Continue (Unsafe)'", score: 0, feedback: "You saw ‘unsafe’ and still went for it 😭" },
+    { text: "Click 'Continue (Unsafe)'", score: 0, feedback: "You saw ‘unsafe’ and still went for it 😭" },
     { text: "Close", score: 2, feedback: "Smart! Warnings exist for a reason." }
   ]
 },
