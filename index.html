@@ -1,44 +1,42 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-<meta charset="UTF-8">
-<title>Cybersecurity Simulation</title>
-<link rel="stylesheet" href="style.css">
+  <title>Your First Month at Work</title>
+  <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
-<div id="quiz-container">
+  <div id="intro">
+    <h1>Your First Month at Work</h1>
+    <p>
+      This short interactive simulation places you in everyday workplace situations. 
+      You’ll make quick decisions about technology, communication, and digital tools 
+      as you navigate your first month on the job. There are no right or wrong answers — 
+      just choose what you would realistically do.
+    </p>
+    <button id="startBtn">Start Simulation</button>
+  </div>
 
-  <h1>Cybersecurity Awareness Simulation</h1>
+  <div id="app">
+    <h1>Your First Month at Work</h1>
+    <div id="question"></div>
+    <div id="options"></div>
+  </div>
 
-  <div id="progress"></div>
+  <div id="result"></div>
 
-  <div id="question-box"></div>
 
-  <div id="feedback-box"></div>
 
-  <button onclick="nextQuestion()">Next</button>
-
-</div>
-
-<div id="result-screen" style="display:none;">
-  <h1>Your Cybersecurity Risk Report</h1>
-
-  <h2 id="score"></h2>
-  <h3 id="level"></h3>
-
-  <div id="summary"></div>
-  <div id="category-feedback"></div>
-</div>
-
-<!-- Firebase SDKs (OPTIONAL - safe to keep) -->
+<!-- Firebase App (core SDK) -->
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+
+<!-- Firestore -->
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
 
 <script>
+  // Your Firebase configuration
   const firebaseConfig = {
-    apiKey: "YOUR_KEY",
+    apiKey: "AIzaSyAqcSyu4fpEINihBVnWzqTxBSgBtWzqlDY",
     authDomain: "cybersecurity-simulation-69011.firebaseapp.com",
     projectId: "cybersecurity-simulation-69011",
     storageBucket: "cybersecurity-simulation-69011.firebasestorage.app",
@@ -46,12 +44,13 @@
     appId: "1:745553879188:web:e07c61fe0d28c085a11481"
   };
 
+  // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
+
+  // Initialize Firestore
   const db = firebase.firestore();
 </script>
 
-<!-- MAIN JAVASCRIPT (THIS MUST MATCH YOUR FILE NAME) -->
-<script src="script.js"></script>
-
+  <script src="app.js"></script>
 </body>
 </html>
