@@ -375,13 +375,23 @@ function showResults() {
   document.getElementById("app").style.display = "none";
 
   let level;
-  if (totalScore >= 55) level = "Low Risk";
-  else if (totalScore >= 30) level = "Moderate Risk";
-  else level = "High Risk";
+  let message;
+
+  if (totalScore >= 55) {
+    level = "Low Risk ✅";
+    message = "You demonstrate strong cybersecurity awareness and safe habits. Keep it up.";
+  } else if (totalScore >= 30) {
+    level = "Moderate Risk ⚠️";
+    message = "You have a good foundation, but some behaviors could expose you to risk.";
+  } else {
+    level = "High Risk ❌";
+    message = "Your current habits make you vulnerable to cyber threats. Improvement is strongly recommended.";
+  }
 
   document.getElementById("result").innerHTML = `
     <h2>Your Score: ${totalScore}</h2>
-    <h3>Risk Level: ${level}</h3>
+    <h3>${level}</h3>
+    <p>${message}</p>
   `;
 
   saveResults();
