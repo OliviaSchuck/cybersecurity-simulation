@@ -1,45 +1,155 @@
+/* ================= GLOBAL ================= */
+
 body {
-  font-family: Arial, sans-serif;
-  padding: 20px;
+  font-family: "Segoe UI", Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(135deg, #0f172a, #1e293b);
+  color: #e5e7eb;
 }
 
-#question {
-  font-size: 1.2rem;
-  margin-bottom: 20px;
-}
+/* ================= APP WRAPPER ================= */
 
-button {
-  display: block;
-  margin: 10px 0;
-  padding: 10px;
-  width: 100%;
-  font-size: 1rem;
-}
-
-/* Hide the app until Start is clicked */
 #app {
   display: none;
 }
 
-/* Intro screen styling */
+/* ================= INTRO SCREEN ================= */
+
 #intro {
-  max-width: 600px;
-  margin: 80px auto;
+  max-width: 650px;
+  margin: 120px auto;
   text-align: center;
+  padding: 40px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 16px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.4);
 }
 
 #intro h1 {
-  margin-bottom: 20px;
+  font-size: 2.2rem;
+  margin-bottom: 15px;
+  color: #ffffff;
 }
 
 #intro p {
   font-size: 1.1rem;
-  line-height: 1.5;
-  margin-bottom: 30px;
+  line-height: 1.6;
+  margin-bottom: 25px;
+  color: #cbd5e1;
 }
 
+/* Start button */
 #intro button {
-  padding: 12px 24px;
+  padding: 12px 28px;
   font-size: 1rem;
   cursor: pointer;
+  border: none;
+  border-radius: 10px;
+  background: #3b82f6;
+  color: white;
+  transition: 0.3s ease;
+}
+
+#intro button:hover {
+  background: #2563eb;
+  transform: translateY(-2px);
+}
+
+/* ================= QUIZ CONTAINER ================= */
+
+#quiz-container {
+  max-width: 700px;
+  margin: 60px auto;
+  padding: 30px;
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 16px;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+  backdrop-filter: blur(10px);
+}
+
+/* Title */
+h1 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 1.8rem;
+  color: #ffffff;
+}
+
+/* Progress */
+#progress {
+  text-align: center;
+  margin-bottom: 15px;
+  font-weight: bold;
+  color: #93c5fd;
+}
+
+/* Question text */
+#question-box h2 {
+  font-size: 1.3rem;
+  margin-bottom: 20px;
+  color: #f8fafc;
+}
+
+/* ================= ANSWER BUTTONS ================= */
+
+button {
+  display: block;
+  width: 100%;
+  margin: 10px 0;
+  padding: 12px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 10px;
+  background: #1f2937;
+  color: #e5e7eb;
+  cursor: pointer;
+  transition: 0.25s ease;
+}
+
+button:hover {
+  background: #3b82f6;
+  transform: translateY(-2px);
+}
+
+/* ================= FEEDBACK ================= */
+
+#feedback-box {
+  margin-top: 15px;
+  padding: 10px;
+  font-style: italic;
+  color: #cbd5e1;
+  text-align: center;
+}
+
+/* ================= RESULTS SCREEN ================= */
+
+#result-screen {
+  display: none;
+  max-width: 700px;
+  margin: 80px auto;
+  padding: 30px;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 16px;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+  backdrop-filter: blur(10px);
+}
+
+#score {
+  font-size: 2rem;
+  margin-bottom: 10px;
+  color: #60a5fa;
+}
+
+#level {
+  font-size: 1.3rem;
+  margin-bottom: 20px;
+}
+
+/* Summary text */
+#summary {
+  margin-top: 20px;
+  color: #cbd5e1;
 }
