@@ -1,155 +1,83 @@
-/* ================= GLOBAL ================= */
+/* ================= CYBER BACKGROUND ================= */
 
 body {
-  font-family: "Segoe UI", Arial, sans-serif;
   margin: 0;
-  padding: 0;
-  background: linear-gradient(135deg, #0f172a, #1e293b);
+  font-family: "Segoe UI", Arial, sans-serif;
   color: #e5e7eb;
+
+  /* dark cyber gradient */
+  background: radial-gradient(circle at top, #0b1220, #050814 60%, #02030a);
+
+  /* subtle grid overlay */
+  background-image:
+    linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+  background-size: 40px 40px;
 }
 
-/* ================= APP WRAPPER ================= */
-
-#app {
-  display: none;
+/* optional animated glow effect */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at 30% 20%, rgba(59,130,246,0.15), transparent 40%),
+              radial-gradient(circle at 70% 80%, rgba(16,185,129,0.10), transparent 40%);
+  pointer-events: none;
 }
 
-/* ================= INTRO SCREEN ================= */
+/* ================= INTRO CARD ================= */
 
 #intro {
-  max-width: 650px;
+  max-width: 700px;
   margin: 120px auto;
-  text-align: center;
   padding: 40px;
-  background: rgba(255, 255, 255, 0.05);
+
+  text-align: center;
+
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 16px;
-  backdrop-filter: blur(10px);
-  box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+
+  backdrop-filter: blur(12px);
+  box-shadow: 0 0 30px rgba(0,0,0,0.6);
 }
 
+/* Title glow effect */
 #intro h1 {
-  font-size: 2.2rem;
+  font-size: 2.4rem;
   margin-bottom: 15px;
   color: #ffffff;
+  text-shadow: 0 0 10px rgba(59,130,246,0.6);
 }
 
+/* Text styling */
 #intro p {
   font-size: 1.1rem;
   line-height: 1.6;
-  margin-bottom: 25px;
   color: #cbd5e1;
 }
 
-/* Start button */
+/* Start button cyber style */
 #intro button {
+  margin-top: 20px;
   padding: 12px 28px;
   font-size: 1rem;
-  cursor: pointer;
+
   border: none;
   border-radius: 10px;
-  background: #3b82f6;
+
+  background: linear-gradient(90deg, #3b82f6, #06b6d4);
   color: white;
+
+  cursor: pointer;
   transition: 0.3s ease;
+  box-shadow: 0 0 15px rgba(59,130,246,0.4);
 }
 
 #intro button:hover {
-  background: #2563eb;
   transform: translateY(-2px);
-}
-
-/* ================= QUIZ CONTAINER ================= */
-
-#quiz-container {
-  max-width: 700px;
-  margin: 60px auto;
-  padding: 30px;
-  background: rgba(255, 255, 255, 0.06);
-  border-radius: 16px;
-  box-shadow: 0 10px 40px rgba(0,0,0,0.4);
-  backdrop-filter: blur(10px);
-}
-
-/* Title */
-h1 {
-  text-align: center;
-  margin-bottom: 20px;
-  font-size: 1.8rem;
-  color: #ffffff;
-}
-
-/* Progress */
-#progress {
-  text-align: center;
-  margin-bottom: 15px;
-  font-weight: bold;
-  color: #93c5fd;
-}
-
-/* Question text */
-#question-box h2 {
-  font-size: 1.3rem;
-  margin-bottom: 20px;
-  color: #f8fafc;
-}
-
-/* ================= ANSWER BUTTONS ================= */
-
-button {
-  display: block;
-  width: 100%;
-  margin: 10px 0;
-  padding: 12px;
-  font-size: 1rem;
-  border: none;
-  border-radius: 10px;
-  background: #1f2937;
-  color: #e5e7eb;
-  cursor: pointer;
-  transition: 0.25s ease;
-}
-
-button:hover {
-  background: #3b82f6;
-  transform: translateY(-2px);
-}
-
-/* ================= FEEDBACK ================= */
-
-#feedback-box {
-  margin-top: 15px;
-  padding: 10px;
-  font-style: italic;
-  color: #cbd5e1;
-  text-align: center;
-}
-
-/* ================= RESULTS SCREEN ================= */
-
-#result-screen {
-  display: none;
-  max-width: 700px;
-  margin: 80px auto;
-  padding: 30px;
-  text-align: center;
-  background: rgba(255, 255, 255, 0.06);
-  border-radius: 16px;
-  box-shadow: 0 10px 40px rgba(0,0,0,0.4);
-  backdrop-filter: blur(10px);
-}
-
-#score {
-  font-size: 2rem;
-  margin-bottom: 10px;
-  color: #60a5fa;
-}
-
-#level {
-  font-size: 1.3rem;
-  margin-bottom: 20px;
-}
-
-/* Summary text */
-#summary {
-  margin-top: 20px;
-  color: #cbd5e1;
+  box-shadow: 0 0 25px rgba(59,130,246,0.7);
 }
