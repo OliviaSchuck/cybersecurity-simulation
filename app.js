@@ -12,7 +12,6 @@ let answers = [];
 
 // QUESTIONS (you can paste all 33 here same format)
 const questions = [
-const questions = [
 
 {
   question: "Have you ever received training on cybersecurity at school or work?",
