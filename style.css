@@ -1,66 +1,47 @@
+
+@@ -0,0 +1,45 @@
 body {
   font-family: Arial, sans-serif;
-  background: #eef2f6;
-  text-align: center;
   padding: 20px;
-  margin: 0;
 }
 
-/* Main containers */
-#quiz-container, #result-screen {
-  background: white;
-  width: 90%;
-  max-width: 750px;
-  margin: 40px auto;
-  padding: 30px;
-  border-radius: 14px;
-  box-shadow: 0px 8px 20px rgba(0,0,0,0.1);
+#question {
+  font-size: 1.2rem;
+  margin-bottom: 20px;
 }
 
-/* Title */
-h1 {
-  color: #1f4fbf;
-}
-
-/* Buttons */
 button {
-  margin: 10px;
-  padding: 12px 20px;
+  display: block;
+  margin: 10px 0;
+  padding: 10px;
+  width: 100%;
+  font-size: 1rem;
+}
+
+/* Hide the app until Start is clicked */
+#app {
+  display: none;
+}
+
+/* Intro screen styling */
+#intro {
+  max-width: 600px;
+  margin: 80px auto;
+  text-align: center;
+}
+
+#intro h1 {
+  margin-bottom: 20px;
+}
+
+#intro p {
+  font-size: 1.1rem;
+  line-height: 1.5;
+  margin-bottom: 30px;
+}
+
+#intro button {
+  padding: 12px 24px;
+  font-size: 1rem;
   cursor: pointer;
-  border: none;
-  border-radius: 8px;
-  background: #2d6cdf;
-  color: white;
-  font-size: 15px;
-  transition: 0.2s;
-}
-
-button:hover {
-  background: #1f4fbf;
-  transform: scale(1.03);
-}
-
-/* Feedback box */
-#feedback-box {
-  margin-top: 15px;
-  font-style: italic;
-  color: #333;
-}
-
-/* Progress text */
-#progress {
-  margin-bottom: 10px;
-  font-weight: bold;
-  color: #444;
-}
-
-/* Result styling */
-#score {
-  font-size: 28px;
-  color: #1f4fbf;
-}
-
-#level {
-  font-size: 20px;
-  margin-top: 10px;
 }
