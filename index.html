@@ -32,22 +32,14 @@
   <div id="category-feedback"></div>
 </div>
 
-<script src="script.js"></script>
-</body>
-</html>
-
-
-
-<!-- Firebase App (core SDK) -->
+<!-- Firebase SDKs -->
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
-
-<!-- Firestore -->
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
 
 <script>
-  // Your Firebase configuration
+  // Firebase config
   const firebaseConfig = {
-    apiKey: "AIzaSyAqcSyu4fpEINihBVnWzqTxBSgBtWzqlDY",
+    apiKey: "YOUR_KEY",
     authDomain: "cybersecurity-simulation-69011.firebaseapp.com",
     projectId: "cybersecurity-simulation-69011",
     storageBucket: "cybersecurity-simulation-69011.firebasestorage.app",
@@ -55,13 +47,12 @@
     appId: "1:745553879188:web:e07c61fe0d28c085a11481"
   };
 
-  // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
-
-  // Initialize Firestore
   const db = firebase.firestore();
 </script>
 
-  <script src="app.js"></script>
+<!-- YOUR MAIN SCRIPT (ONLY ONE FILE) -->
+<script src="script.js"></script>
+
 </body>
 </html>
