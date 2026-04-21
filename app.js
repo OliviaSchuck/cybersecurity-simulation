@@ -16,6 +16,13 @@ let wifiScore = 0;
 let aiScore = 0;
 let deviceScore = 0;
 
+let phishingCount = 0;
+let passwordCount = 0;
+let wifiCount = 0;
+let aiCount = 0;
+let deviceCount = 0;
+
+
 // QUESTIONS (you can paste all 33 here same format)
 const questions = [
 
@@ -439,13 +446,28 @@ if (q.type === "multi") {
 `;
 
     totalScore += score;
+    
     // CATEGORY TRACKING
-if (q.category === "phishing") phishingScore += option.score;
-if (q.category === "password") passwordScore += option.score;
-if (q.category === "wifi") wifiScore += option.score;
-if (q.category === "ai") aiScore += option.score;
-if (q.category === "device") deviceScore += option.score;
-
+if (q.category === "phishing") {
+  phishingScore += option.score;
+  phishingCount++;
+}
+if (q.category === "password") {
+  passwordScore += option.score;
+  passwordCount++;
+}
+if (q.category === "wifi") {
+  wifiScore += option.score;
+  wifiCount++;
+}
+if (q.category === "ai") {
+  aiScore += option.score;
+  aiCount++;
+}
+if (q.category === "device") {
+  deviceScore += option.score;
+  deviceCount++;
+}
     answers.push({
       question: q.question,
       answer: Array.from(selected),
@@ -532,27 +554,44 @@ if (!weakestArea) weakestArea = "multiple areas";
 let min = Math.min(phishingScore, passwordScore, wifiScore, aiScore, deviceScore);
 let max = Math.max(phishingScore, passwordScore, wifiScore, aiScore, deviceScore);
 
-if (phishingScore === min) weakestArea = "phishing awareness";
-if (passwordScore === min) weakestArea = "password security";
-if (wifiScore === min) weakestArea = "public Wi-Fi safety";
-if (aiScore === min) weakestArea = "AI/data privacy";
-if (deviceScore === min) weakestArea = "device security";
+const categories = [
+  {
+    name: "phishing awareness",
+    score: phishingCount ? phishingScore / phishingCount : 0
+  },
+  {
+    name: "password security",
+    score: passwordCount ? passwordScore / passwordCount : 0
+  },
+  {
+    name: "public Wi-Fi safety",
+    score: wifiCount ? wifiScore / wifiCount : 0
+  },
+  {
+    name: "AI/data privacy",
+    score: aiCount ? aiScore / aiCount : 0
+  },
+  {
+    name: "device security",
+    score: deviceCount ? deviceScore / deviceCount : 0
+  }
+];
 
-if (phishingScore === max) strongestArea = "phishing awareness";
-if (passwordScore === max) strongestArea = "password security";
-if (wifiScore === max) strongestArea = "public Wi-Fi safety";
-if (aiScore === max) strongestArea = "AI/data privacy";
-if (deviceScore === max) strongestArea = "device security";
+// sort by score
+categories.sort((a, b) => a.score - b.score);
+
+let weakestArea = categories[0].name;
+let strongestArea = categories[categories.length - 1].name;
   
   // Generate tips
-  let tips = [];
+  let tips = new Set();
 
   answers.forEach(a => {
     if (a.question.includes("same password") && a.score === 0) {
       tips.push("Use a unique password for every account.");
     }
     if (a.question.includes("MFA") && a.score === 0) {
-      tips.push("Enable multi-factor authentication wherever possible.");
+      tips.add("Enable multi-factor authentication wherever possible.");
     }
     if (a.question.includes("unknown senders") && a.score === 0) {
       tips.push("Avoid clicking links from unknown senders.");
@@ -596,8 +635,8 @@ if (deviceScore === max) strongestArea = "device security";
         <div class="tips">
           <h4>Recommendations</h4>
           <ul>
-            ${tips.map(t => `<li>${t}</li>`).join("")}
-          </ul>
+  ${[...tips].map(t => `<li>${t}</li>`).join("")}
+  </ul>
         </div>
       `
           : `<p class="perfect">No major risks detected. Keep it up 👏</p>`
