@@ -583,7 +583,7 @@ if (categories[0].score === categories[categories.length - 1].score) {
 }
   
 
-const categories = [
+
   {
     name: "phishing awareness",
     score: phishingCount ? phishingScore / phishingCount : 0
