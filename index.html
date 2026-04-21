@@ -20,35 +20,29 @@ At the end of the simulation, users receive a personalized cybersecurity risk sc
   </div>
 
   <!-- APP -->
-<div id="app">
-  <div class="quiz-container">
+ <!-- APP -->
+  <div id="app">
+    <div id="quiz-container"> <!-- ✅ FIXED -->
 
-    <h1>Cybersecurity Awareness Simulation</h1>
+      <div id="progress-text"></div> <!-- ✅ FIXED ID -->
 
-    <div id="progressWrapper">
-      <div id="progressText"></div>
       <div id="progressBarContainer">
         <div id="progressBar"></div>
       </div>
+
+      <h2 id="question"></h2>
+
+      <div id="options"></div>
+
+      <div id="feedback"></div>
+
+      <button id="nextBtn" style="display:none;">Next</button>
+
     </div>
-
-    <h2 id="question"></h2>
-
-    <div id="options"></div>
-
-    <div id="feedback"></div>
-
-    <button id="nextBtn" style="display:none;">Next</button>
-
   </div>
-</div>
 
   <!-- RESULT -->
   <div id="result"></div>
-
-<div id="progressBarContainer">
-  <div id="progressBar"></div>
-</div>
 
 <!-- Firebase App (core SDK) -->
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
