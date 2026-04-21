@@ -22,11 +22,14 @@ const questions = [
 },
 
 {
-  question: "Are you aware of these terms? (Self-assess your familiarity)",
+  question: "Are you aware of these terms? (Select all that apply)",
+  type: "multi", // 👈 ONLY this question has this
   options: [
-    { text: "3 or more", score: 2, feedback: "Look at you! You know the basics of cybersecurity terms.\n\nPhishing: Fake messages that trick you\nMalware: Harmful software\nRansomware: Locks files for money\nVPN: Protects your connection\nMFA: Extra login security" },
-    { text: "1–2", score: 1, feedback: "Good start, but there’s more to learn.\n\nPhishing: Fake messages\nMalware: Harmful software\nRansomware: Locks files\nVPN: Secure connection\nMFA: Extra protection" },
-    { text: "None", score: 0, feedback: "No problem! This is where your learning begins.\n\nPhishing: Fake messages\nMalware: Harmful software\nRansomware: Locks files\nVPN: Secure connection\nMFA: Extra protection" }
+    "Phishing",
+    "Malware/Virus",
+    "Ransomware",
+    "VPN",
+    "Multi-factor authentication (MFA)"
   ]
 },
 
@@ -346,6 +349,70 @@ function renderQuestion() {
   document.getElementById("feedback").textContent = "";
   document.getElementById("nextBtn").style.display = "none";
 
+// 👇 ONLY runs for Question 2
+if (q.type === "multi") {
+
+  const selected = new Set();
+
+  q.options.forEach(optionText => {
+    const btn = document.createElement("button");
+    btn.textContent = optionText;
+
+    btn.onclick = () => {
+      if (selected.has(optionText)) {
+        selected.delete(optionText);
+        btn.classList.remove("selected");
+      } else {
+        selected.add(optionText);
+        btn.classList.add("selected");
+      }
+    };
+
+    optionsDiv.appendChild(btn);
+  });
+
+  const submitBtn = document.createElement("button");
+  submitBtn.textContent = "Submit";
+
+  submitBtn.onclick = () => {
+    const count = selected.size;
+
+    let score = 0;
+    let feedback = "";
+
+    if (count >= 3) {
+      score = 2;
+      feedback = "Look at you! You know the basics of cybersecurity terms.";
+    } else if (count >= 1) {
+      score = 1;
+      feedback = "Good start, but there’s more to learn.";
+    } else {
+      score = 0;
+      feedback = "No problem! This is where your learning begins.";
+    }
+
+    feedback += "\n\nPhishing: Fake emails or messages that trick you\n";
+    feedback += "Malware/Virus: Harmful software\n";
+    feedback += "Ransomware: Locks files for money\n";
+    feedback += "VPN: Protects your connection\n";
+    feedback += "MFA: Extra login security";
+
+    totalScore += score;
+
+    answers.push({
+      question: q.question,
+      answer: Array.from(selected),
+      score: score
+    });
+
+    document.getElementById("feedback").textContent = feedback;
+    document.getElementById("nextBtn").style.display = "block";
+  };
+
+  optionsDiv.appendChild(submitBtn);
+
+} else {
+  
   q.options.forEach(option => {
     const btn = document.createElement("button");
     btn.textContent = option.text;
