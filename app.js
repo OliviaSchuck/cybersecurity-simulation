@@ -374,24 +374,74 @@ document.getElementById("progressBar").style.width = progressPercent + "%";
 function showResults() {
   document.getElementById("app").style.display = "none";
 
-  let level;
-  let message;
+  let level, color, message;
 
   if (totalScore >= 55) {
-    level = "Low Risk ✅";
-    message = "You demonstrate strong cybersecurity awareness and safe habits. Keep it up.";
+    level = "LOW RISK";
+    color = "#00ff88";
+    message = "You demonstrate strong cybersecurity awareness and safe habits.";
   } else if (totalScore >= 30) {
-    level = "Moderate Risk ⚠️";
-    message = "You have a good foundation, but some behaviors could expose you to risk.";
+    level = "MODERATE RISK";
+    color = "#ffcc00";
+    message = "You have a solid foundation, but some behaviors could expose you to risk.";
   } else {
-    level = "High Risk ❌";
-    message = "Your current habits make you vulnerable to cyber threats. Improvement is strongly recommended.";
+    level = "HIGH RISK";
+    color = "#ff3b3b";
+    message = "Your current habits make you vulnerable to cyber threats.";
   }
 
+  // Generate tips
+  let tips = [];
+
+  answers.forEach(a => {
+    if (a.question.includes("same password") && a.score === 0) {
+      tips.push("Use a unique password for every account.");
+    }
+    if (a.question.includes("MFA") && a.score === 0) {
+      tips.push("Enable multi-factor authentication wherever possible.");
+    }
+    if (a.question.includes("unknown senders") && a.score === 0) {
+      tips.push("Avoid clicking links from unknown senders.");
+    }
+    if (a.question.includes("public Wi-Fi") && a.score === 0) {
+      tips.push("Avoid logging into sensitive accounts on public Wi-Fi.");
+    }
+  });
+
+  const percent = Math.round((totalScore / (questions.length * 2)) * 100);
+
   document.getElementById("result").innerHTML = `
-    <h2>Your Score: ${totalScore}</h2>
-    <h3>${level}</h3>
-    <p>${message}</p>
+    <div class="results-card">
+
+      <h2 class="title">Cybersecurity Risk Assessment</h2>
+
+      <div class="score-circle" style="border-color:${color}">
+        <span>${percent}%</span>
+      </div>
+
+      <h3 class="risk" style="color:${color}">${level}</h3>
+      <p class="message">${message}</p>
+
+      <div class="bar-container">
+        <div class="bar" style="width:${percent}%; background:${color}"></div>
+      </div>
+
+      ${
+        tips.length > 0
+          ? `
+        <div class="tips">
+          <h4>Recommendations</h4>
+          <ul>
+            ${tips.map(t => `<li>${t}</li>`).join("")}
+          </ul>
+        </div>
+      `
+          : `<p class="perfect">No major risks detected. Keep it up 👏</p>`
+      }
+
+      <button class="restart-btn" onclick="location.reload()">Restart Assessment</button>
+
+    </div>
   `;
 
   saveResults();
