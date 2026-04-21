@@ -20,12 +20,28 @@ At the end of the simulation, users receive a personalized cybersecurity risk sc
   </div>
 
   <!-- APP -->
-  <div id="app">
+<div id="app">
+  <div class="quiz-container">
+
     <h1>Cybersecurity Awareness Simulation</h1>
-    <div id="question"></div>
+
+    <div id="progressWrapper">
+      <div id="progressText"></div>
+      <div id="progressBarContainer">
+        <div id="progressBar"></div>
+      </div>
+    </div>
+
+    <h2 id="question"></h2>
+
     <div id="options"></div>
+
     <div id="feedback"></div>
+
+    <button id="nextBtn" style="display:none;">Next</button>
+
   </div>
+</div>
 
   <!-- RESULT -->
   <div id="result"></div>
