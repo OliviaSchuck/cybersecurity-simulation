@@ -392,11 +392,19 @@ if (q.type === "multi") {
       feedback = "No problem! This is where your learning begins.";
     }
 
-    feedback += "\n\nPhishing: Fake emails or messages that trick you\n";
-    feedback += "Malware/Virus: Harmful software\n";
-    feedback += "Ransomware: Locks files for money\n";
-    feedback += "VPN: Protects your connection\n";
-    feedback += "MFA: Extra login security";
+   feedback = `
+  <div class="feedback-title">
+    Good start, but there’s more to learn.
+  </div>
+
+  <ul class="feedback-list">
+    <li><strong>Phishing:</strong> Fake emails or messages that trick you into clicking links or sharing information</li>
+    <li><strong>Malware/Virus:</strong> Harmful software that can damage your device or steal data</li>
+    <li><strong>Ransomware:</strong> A type of malware that locks your files and demands payment</li>
+    <li><strong>VPN:</strong> A tool that protects your internet connection, especially on public Wi-Fi</li>
+    <li><strong>MFA:</strong> Extra security step (like a code or app) to verify your identity</li>
+  </ul>
+`;
 
     totalScore += score;
 
@@ -406,7 +414,7 @@ if (q.type === "multi") {
       score: score
     });
 
-    document.getElementById("feedback").textContent = feedback;
+    document.getElementById("feedback").innerHTML = feedback;
     document.getElementById("nextBtn").style.display = "block";
   };
 
