@@ -688,8 +688,8 @@ if (weakestArea === "device security") {
       ${
         tips.length > 0
           ? `
-        <div class="tips">
-         <h4>Personalized Recommendations</h4>
+<div class="tips" style="border-top: 1px solid rgba(255,255,255,0.1); padding-top: 15px;">
+<h4>Personalized Recommendations</h4>
 <p style="font-size: 13px; opacity: 0.8;">
   Based on your responses, here are the most important actions you should take:
 </p>
