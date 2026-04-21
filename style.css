@@ -179,8 +179,8 @@ body::before {
 /* ================= NEXT BUTTON ================= */
 
 #nextBtn {
-  display: flex;
-  justify-content: flex-end;
+ display: block;
+  margin-left: auto;
   margin-top: 20px;
   padding: 12px 24px;
   font-size: 1rem;
