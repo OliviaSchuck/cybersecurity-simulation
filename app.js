@@ -525,6 +525,8 @@ function showResults() {
   // Results by section
 let weakestArea = "";
 let strongestArea = "";
+if (!strongestArea) strongestArea = "balanced awareness";
+if (!weakestArea) weakestArea = "multiple areas";
 
 // find weakest
 let min = Math.min(phishingScore, passwordScore, wifiScore, aiScore, deviceScore);
@@ -577,7 +579,17 @@ if (deviceScore === max) strongestArea = "device security";
       <div class="bar-container">
         <div class="bar" style="width:${percent}%; background:${color}"></div>
       </div>
+       <div class="summary-box">
+      <h4>Personalized Security Profile</h4>
 
+      <p>
+        Your strongest area is <strong>${strongestArea}</strong>, showing good instincts in that category.
+      </p>
+
+      <p>
+        However, your weakest area is <strong>${weakestArea}</strong>, which is where you're most vulnerable to cyber threats.
+      </p>
+    </div>
       ${
         tips.length > 0
           ? `
