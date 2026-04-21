@@ -11,11 +11,10 @@ body {
 }
 
 /* ================= APP WRAPPER ================= */
-  /* dark cyber gradient */
-  background: radial-gradient(circle at top, #0b1220, #050814 60%, #02030a);
 
 #app {
   display: none;
+   background: radial-gradient(circle at top, #0b1220, #050814 60%, #02030a);
   /* subtle grid overlay */
   background-image:
     linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
