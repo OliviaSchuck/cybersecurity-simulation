@@ -373,6 +373,7 @@ if (q.type === "multi") {
 
   const submitBtn = document.createElement("button");
   submitBtn.textContent = "Submit";
+  submitBtn.classList.add("submit-btn");
 
   submitBtn.onclick = () => {
     const count = selected.size;
