@@ -428,12 +428,19 @@ if (q.type === "multi") {
 
       document.getElementById("feedback").textContent = option.feedback;
 
-      // disable buttons after click
-      Array.from(optionsDiv.children).forEach(b => b.disabled = true);
+      // remove "selected" from all buttons first
+  Array.from(optionsDiv.children).forEach(b => {
+    b.classList.remove("selected");
+  });
 
-      document.getElementById("nextBtn").style.display = "block";
-    };
+  // add selected style to clicked button
+  btn.classList.add("selected");
 
+  // disable buttons after selection (locks in answer)
+  Array.from(optionsDiv.children).forEach(b => b.disabled = true);
+
+  document.getElementById("nextBtn").style.display = "block";
+};
     optionsDiv.appendChild(btn);
   });
 }
