@@ -447,27 +447,7 @@ if (q.type === "multi") {
 
     totalScore += score;
     
-    // CATEGORY TRACKING
-if (q.category === "phishing") {
-  phishingScore += option.score;
-  phishingCount++;
-}
-if (q.category === "password") {
-  passwordScore += option.score;
-  passwordCount++;
-}
-if (q.category === "wifi") {
-  wifiScore += option.score;
-  wifiCount++;
-}
-if (q.category === "ai") {
-  aiScore += option.score;
-  aiCount++;
-}
-if (q.category === "device") {
-  deviceScore += option.score;
-  deviceCount++;
-}
+  
     answers.push({
       question: q.question,
       answer: Array.from(selected),
@@ -488,6 +468,28 @@ if (q.category === "device") {
 
     btn.onclick = () => {
       totalScore += option.score;
+
+      // CATEGORY TRACKING (correct place)
+if (q.category === "phishing") {
+  phishingScore += option.score;
+  phishingCount++;
+}
+if (q.category === "password") {
+  passwordScore += option.score;
+  passwordCount++;
+}
+if (q.category === "wifi") {
+  wifiScore += option.score;
+  wifiCount++;
+}
+if (q.category === "ai") {
+  aiScore += option.score;
+  aiCount++;
+}
+if (q.category === "device") {
+  deviceScore += option.score;
+  deviceCount++;
+}
 
       answers.push({
         question: q.question,
@@ -545,14 +547,41 @@ function showResults() {
     message = "Your current habits make you vulnerable to cyber threats.";
   }
   // Results by section
-let weakestArea = "";
-let strongestArea = "";
-if (!strongestArea) strongestArea = "balanced awareness";
-if (!weakestArea) weakestArea = "multiple areas";
+const categories = [
+  {
+    name: "phishing awareness",
+    score: phishingCount ? phishingScore / phishingCount : 0
+  },
+  {
+    name: "password security",
+    score: passwordCount ? passwordScore / passwordCount : 0
+  },
+  {
+    name: "public Wi-Fi safety",
+    score: wifiCount ? wifiScore / wifiCount : 0
+  },
+  {
+    name: "AI/data privacy",
+    score: aiCount ? aiScore / aiCount : 0
+  },
+  {
+    name: "device security",
+    score: deviceCount ? deviceScore / deviceCount : 0
+  }
+];
 
-// find weakest
-let min = Math.min(phishingScore, passwordScore, wifiScore, aiScore, deviceScore);
-let max = Math.max(phishingScore, passwordScore, wifiScore, aiScore, deviceScore);
+// sort lowest → highest
+categories.sort((a, b) => a.score - b.score);
+
+let weakestArea = categories[0].name;
+let strongestArea = categories[categories.length - 1].name;
+
+// handle tie (everything is basically the same)
+if (categories[0].score === categories[categories.length - 1].score) {
+  weakestArea = "balanced awareness across categories";
+  strongestArea = "balanced awareness across categories";
+}
+  
 
 const categories = [
   {
@@ -588,18 +617,45 @@ let strongestArea = categories[categories.length - 1].name;
 
   answers.forEach(a => {
     if (a.question.includes("same password") && a.score === 0) {
-      tips.push("Use a unique password for every account.");
+      tips.add("Use a unique password for every account.");
     }
     if (a.question.includes("MFA") && a.score === 0) {
       tips.add("Enable multi-factor authentication wherever possible.");
     }
     if (a.question.includes("unknown senders") && a.score === 0) {
-      tips.push("Avoid clicking links from unknown senders.");
+      tips.add("Avoid clicking links from unknown senders.");
     }
     if (a.question.includes("public Wi-Fi") && a.score === 0) {
-      tips.push("Avoid logging into sensitive accounts on public Wi-Fi.");
+      tips.add("Avoid logging into sensitive accounts on public Wi-Fi.");
     }
   });
+
+  // 🎯 SMART RECOMMENDATIONS BASED ON WEAKEST AREA
+if (weakestArea === "phishing awareness") {
+  tips.add("Be more cautious with emails and messages—always verify the sender before clicking links.");
+  tips.add("Hover over links before clicking to check where they actually lead.");
+}
+
+if (weakestArea === "password security") {
+  tips.add("Use a unique password for every account to prevent chain breaches.");
+  tips.add("Consider using a password manager to securely store and generate strong passwords.");
+}
+
+if (weakestArea === "public Wi-Fi safety") {
+  tips.add("Avoid logging into sensitive accounts on public Wi-Fi networks.");
+  tips.add("Use a VPN or personal hotspot when accessing important information.");
+}
+
+if (weakestArea === "AI/data privacy") {
+  tips.add("Avoid sharing personal or sensitive information with AI tools.");
+  tips.add("Always review company policies before using AI for work-related tasks.");
+}
+
+if (weakestArea === "device security") {
+  tips.add("Keep your devices updated to protect against vulnerabilities.");
+  tips.add("Enable antivirus or endpoint protection for an extra layer of security.");
+}
+  
 
   const percent = Math.round((totalScore / (questions.length * 2)) * 100);
 
