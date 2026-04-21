@@ -546,6 +546,8 @@ function showResults() {
     color = "#ff3b3b";
     message = "Your current habits make you vulnerable to cyber threats.";
   }
+
+  
   // Results by section
 const categories = [
   {
@@ -573,10 +575,11 @@ const categories = [
 // sort lowest → highest
 categories.sort((a, b) => a.score - b.score);
 
+// assign areas
 let weakestArea = categories[0].name;
 let strongestArea = categories[categories.length - 1].name;
 
-// handle tie (everything is basically the same)
+// handle tie
 if (categories[0].score === categories[categories.length - 1].score) {
   weakestArea = "balanced awareness across categories";
   strongestArea = "balanced awareness across categories";
