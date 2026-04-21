@@ -99,84 +99,101 @@ body::before {
 /* ================= QUIZ CONTAINER ================= */
 
 #quiz-container {
-  max-width: 700px;
-  margin: 60px auto;
-  padding: 30px;
+  max-width: 750px;
+  margin: 80px auto;
+  padding: 40px;
   background: rgba(255, 255, 255, 0.06);
-  border-radius: 16px;
-  box-shadow: 0 10px 40px rgba(0,0,0,0.4);
-  backdrop-filter: blur(10px);
-}
-
-/* Title */
-h1 {
+  border-radius: 20px;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+  backdrop-filter: blur(12px);
   text-align: center;
-  margin-bottom: 20px;
-  font-size: 1.8rem;
-  color: #ffffff;
 }
 
-/* Progress */
+/* ================= PROGRESS (TOP) ================= */
+
+#progress-text {
+  font-size: 0.9rem;
+  color: #94a3b8;
+  margin-bottom: 10px;
+}
 
 #progressBarContainer {
   width: 100%;
-  height: 8px;
-  background: #222;
-  border-radius: 5px;
-  margin-bottom: 15px;
+  height: 10px;
+  background: #1f2937;
+  border-radius: 6px;
+  margin-bottom: 25px;
 }
 
 #progressBar {
   height: 100%;
   width: 0%;
-  background: #00ffcc;
-  border-radius: 5px;
-  transition: width 0.3s ease;
-}
-
-/* Question text */
-#question-box h2 {
-  font-size: 1.3rem;
-  margin-bottom: 20px;
-  color: #f8fafc;
-}
-
-/* ================= ANSWER BUTTONS ================= */
   background: linear-gradient(90deg, #3b82f6, #06b6d4);
-  color: white;
+  border-radius: 6px;
+  transition: width 0.4s ease;
+}
 
-button {
-  display: block;
-  width: 100%;
-  margin: 10px 0;
-  padding: 12px;
+/* ================= QUESTION ================= */
+
+#question {
+  font-size: 1.6rem;
+  font-weight: 600;
+  margin-bottom: 30px;
+  color: #f8fafc;
+  line-height: 1.5;
+}
+
+/* ================= ANSWERS ================= */
+
+#options {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+#options button {
+  padding: 14px;
   font-size: 1rem;
+  border-radius: 12px;
   border: none;
-  border-radius: 10px;
   background: #1f2937;
   color: #e5e7eb;
   cursor: pointer;
-  transition: 0.25s ease;
-  transition: 0.3s ease;
-  box-shadow: 0 0 15px rgba(59,130,246,0.4);
+  transition: all 0.25s ease;
 }
 
-button:hover {
+#options button:hover {
   background: #3b82f6;
-#intro button:hover {
-  transform: translateY(-2px);
+  transform: scale(1.02);
 }
 
 /* ================= FEEDBACK ================= */
 
-#feedback-box {
-  margin-top: 15px;
-  padding: 10px;
-  font-style: italic;
+#feedback {
+  margin-top: 25px;
+  font-size: 1rem;
   color: #cbd5e1;
-  text-align: center;
+  min-height: 40px;
 }
 
+/* ================= NEXT BUTTON ================= */
+
+#nextBtn {
+  display: none;
+  margin-top: 20px;
+  padding: 12px 24px;
+  font-size: 1rem;
+  border-radius: 10px;
+  border: none;
+  background: linear-gradient(90deg, #22c55e, #4ade80);
+  color: black;
+  cursor: pointer;
+  transition: 0.25s;
+}
+
+#nextBtn:hover {
+  transform: translateY(-2px);
+}
 /* ================= RESULTS SCREEN ================= */
 
 #result {
