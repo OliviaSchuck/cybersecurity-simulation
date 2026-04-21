@@ -179,32 +179,102 @@ button:hover {
 
 /* ================= RESULTS SCREEN ================= */
 
-#result-screen {
-  display: none;
-  max-width: 700px;
-  margin: 80px auto;
+#result {
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+  color: white;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.results-card {
+  background: #111;
   padding: 30px;
+  border-radius: 20px;
+  width: 400px;
   text-align: center;
-  background: rgba(255, 255, 255, 0.06);
-  border-radius: 16px;
-  box-shadow: 0 10px 40px rgba(0,0,0,0.4);
-  backdrop-filter: blur(10px);
+  box-shadow: 0 0 25px rgba(0,255,200,0.2);
 }
 
-#score {
-  font-size: 2rem;
-  margin-bottom: 10px;
-  color: #60a5fa;
-}
-
-#level {
-  font-size: 1.3rem;
+.title {
   margin-bottom: 20px;
+  font-size: 22px;
+  letter-spacing: 1px;
 }
 
-/* Summary text */
-#summary {
+.score-circle {
+  width: 120px;
+  height: 120px;
+  border: 6px solid;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 15px auto;
+  font-size: 26px;
+  font-weight: bold;
+}
+
+.risk {
+  margin-top: 10px;
+  font-size: 20px;
+}
+
+.message {
+  margin: 10px 0 20px;
+  font-size: 14px;
+  opacity: 0.8;
+}
+
+.bar-container {
+  width: 100%;
+  height: 10px;
+  background: #222;
+  border-radius: 5px;
+  margin: 15px 0;
+}
+
+.bar {
+  height: 100%;
+  border-radius: 5px;
+  transition: width 0.5s ease;
+}
+
+.tips {
+  text-align: left;
   margin-top: 20px;
-  color: #cbd5e1;
-  box-shadow: 0 0 25px rgba(59,130,246,0.7);
+}
+
+.tips h4 {
+  margin-bottom: 10px;
+}
+
+.tips ul {
+  padding-left: 18px;
+}
+
+.tips li {
+  margin-bottom: 6px;
+  font-size: 14px;
+}
+
+.perfect {
+  margin-top: 15px;
+  color: #00ff88;
+}
+
+.restart-btn {
+  margin-top: 25px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 10px;
+  background: #00ffcc;
+  color: black;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.restart-btn:hover {
+  background: white;
 }
