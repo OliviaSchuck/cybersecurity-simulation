@@ -330,8 +330,13 @@ const questions = [
 function renderQuestion() {
   const q = questions[currentIndex];
 
+  // Progress text
+  document.getElementById("progress-text").textContent =
+    `Question ${currentIndex + 1} of ${questions.length}`;
+
+  // Progress bar
   const progressPercent = ((currentIndex) / questions.length) * 100;
-document.getElementById("progressBar").style.width = progressPercent + "%";
+  document.getElementById("progressBar").style.width = progressPercent + "%";
 
   document.getElementById("question").textContent = q.question;
 
@@ -339,6 +344,7 @@ document.getElementById("progressBar").style.width = progressPercent + "%";
   optionsDiv.innerHTML = "";
 
   document.getElementById("feedback").textContent = "";
+  document.getElementById("nextBtn").style.display = "none";
 
   q.options.forEach(option => {
     const btn = document.createElement("button");
@@ -355,20 +361,26 @@ document.getElementById("progressBar").style.width = progressPercent + "%";
 
       document.getElementById("feedback").textContent = option.feedback;
 
-      setTimeout(() => {
-        currentIndex++;
+      // disable buttons after click
+      Array.from(optionsDiv.children).forEach(b => b.disabled = true);
 
-        if (currentIndex < questions.length) {
-          renderQuestion();
-        } else {
-          showResults();
-        }
-      }, 1200);
+      document.getElementById("nextBtn").style.display = "block";
     };
 
     optionsDiv.appendChild(btn);
   });
 }
+
+//NEXT BTN
+document.getElementById("nextBtn").onclick = () => {
+  currentIndex++;
+
+  if (currentIndex < questions.length) {
+    renderQuestion();
+  } else {
+    showResults();
+  }
+};
 
 // RESULTS
 function showResults() {
