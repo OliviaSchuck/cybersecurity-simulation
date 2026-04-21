@@ -300,3 +300,24 @@ body::before {
 .restart-btn:hover {
   background: white;
 }
+#options .submit-btn {
+  margin-top: 15px;
+  padding: 14px;
+  width: 100%;
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: 12px;
+  border: none;
+
+  background: linear-gradient(90deg, #f59e0b, #f97316);
+  color: black;
+
+  cursor: pointer;
+  box-shadow: 0 0 18px rgba(245,158,11,0.5);
+  transition: 0.3s ease;
+}
+
+#options .submit-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 25px rgba(245,158,11,0.8);
+}
