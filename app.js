@@ -645,7 +645,6 @@ if (weakestArea === "device security") {
   const percent = Math.round((totalScore / (questions.length * 2)) * 100);
 
   document.getElementById("result").innerHTML = `
-    document.getElementById("result").innerHTML = `
 <div class="dashboard">
 
   <!-- TOP SUMMARY -->
