@@ -345,3 +345,159 @@ body::before {
 .feedback-list strong {
   color: #60a5fa;
 }
+/* ================= DASHBOARD (NEW RESULTS UI) ================= */
+
+.dashboard {
+  max-width: 1000px;
+  margin: 40px auto;
+  padding: 20px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+/* cards */
+.card {
+  background: rgba(17, 24, 39, 0.85);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 14px;
+  padding: 20px;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 0 25px rgba(0,255,200,0.06);
+  transition: 0.25s ease;
+}
+
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 0 30px rgba(0,255,200,0.12);
+}
+
+/* full width sections */
+.summary,
+.restart {
+  grid-column: span 2;
+}
+
+/* ================= SUMMARY HEADER ================= */
+
+.risk-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.risk-header h2 {
+  font-size: 1.3rem;
+  margin: 0;
+  color: #f8fafc;
+}
+
+.score {
+  font-size: 32px;
+  font-weight: bold;
+  color: #00ffcc;
+  text-shadow: 0 0 12px rgba(0,255,200,0.4);
+}
+
+.risk-level {
+  margin-top: 10px;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+/* ================= CATEGORY ROWS ================= */
+
+.category-row {
+  margin: 14px 0;
+}
+
+.cat-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 6px;
+}
+
+.icon {
+  font-size: 18px;
+}
+
+/* bar background */
+.bar-bg {
+  width: 100%;
+  height: 10px;
+  background: #1f2937;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+/* animated fill */
+.bar-fill {
+  height: 100%;
+  border-radius: 6px;
+  background: linear-gradient(90deg, #00ffcc, #00aaff);
+  transition: width 0.8s ease;
+}
+
+/* ================= PROFILE ================= */
+
+.profile .good {
+  color: #00ff88;
+  margin-bottom: 10px;
+  font-weight: 500;
+}
+
+.profile .bad {
+  color: #ff4d4d;
+  font-weight: 500;
+}
+
+/* ================= TIPS ================= */
+
+.tips ul {
+  padding-left: 18px;
+  margin: 0;
+}
+
+.tips li {
+  margin-bottom: 8px;
+  color: #cbd5e1;
+}
+
+/* ================= RESTART BUTTON ================= */
+
+.restart {
+  padding: 14px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 10px;
+
+  background: linear-gradient(90deg, #00ffcc, #00aaff);
+  color: black;
+  font-weight: bold;
+  cursor: pointer;
+
+  transition: 0.25s ease;
+}
+
+.restart:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 20px rgba(0,255,200,0.4);
+}
+
+
+.icon {
+  filter: drop-shadow(0 0 6px rgba(0,255,200,0.3));
+}
+
+
+@media (max-width: 768px) {
+  .dashboard {
+    grid-template-columns: 1fr;
+  }
+
+  .summary,
+  .restart {
+    grid-column: span 1;
+  }
+}
