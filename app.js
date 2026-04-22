@@ -651,8 +651,11 @@ if (weakestArea === "device security") {
   <div class="card summary">
     <div class="risk-header">
       <h2>Cybersecurity Risk Assessment</h2>
-      <div class="score">${percent}%</div>
-    </div>
+      <div class="gauge" style="--value:${percent}; --color:${color}">
+  <div class="gauge-inner">
+    ${percent}%
+  </div>
+</div>
 
     <h3 class="risk-level" style="color:${color}">${level}</h3>
     <p>${message}</p>
