@@ -584,36 +584,7 @@ if (categories[0].score === categories[categories.length - 1].score) {
   weakestArea = "balanced awareness across categories";
   strongestArea = "balanced awareness across categories";
 }
-  
 
-
-  {
-    name: "phishing awareness",
-    score: phishingCount ? phishingScore / phishingCount : 0
-  },
-  {
-    name: "password security",
-    score: passwordCount ? passwordScore / passwordCount : 0
-  },
-  {
-    name: "public Wi-Fi safety",
-    score: wifiCount ? wifiScore / wifiCount : 0
-  },
-  {
-    name: "AI/data privacy",
-    score: aiCount ? aiScore / aiCount : 0
-  },
-  {
-    name: "device security",
-    score: deviceCount ? deviceScore / deviceCount : 0
-  }
-];
-
-// sort by score
-categories.sort((a, b) => a.score - b.score);
-
-let weakestArea = categories[0].name;
-let strongestArea = categories[categories.length - 1].name;
   
   // Generate tips
   let tips = new Set();
