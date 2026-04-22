@@ -720,11 +720,17 @@ if (weakestArea === "device security") {
 
   <!-- RECOMMENDATIONS -->
   <div class="card tips">
-    <h3>Smart Recommendations</h3>
-    <ul>
-      ${[...tips].map(t => `<li>🎯 ${t}</li>`).join("")}
-    </ul>
+  <h3>Smart Recommendations</h3>
+
+  <div class="rec-grid">
+    ${[...tips].map(t => `
+      <div class="rec-card">
+        <div class="rec-title">Security Tip</div>
+        <div class="rec-text">${t}</div>
+      </div>
+    `).join("")}
   </div>
+</div>
 
   <button onclick="location.reload()" class="restart">
     Restart Assessment
