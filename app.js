@@ -662,21 +662,40 @@ if (weakestArea === "device security") {
   <div class="card categories">
     <h3>Category Scores</h3>
 
-    ${categories.map(c => {
-      const icon = getIcon(c.name);
-      const pct = Math.round((c.score / 2) * 100);
+  ${categories.map(c => {
+  const icon = getIcon(c.name);
+  const pct = Math.round((c.score / 2) * 100);
 
-      return `
-        <div class="category-row">
+  let status = "";
+  let color = "";
 
-          <div class="cat-left">
-            <span class="icon">${icon}</span>
-            <span>${c.name}</span>
-          </div>
+  if (pct < 40) {
+    status = "Needs Work";
+    color = "#ff4d4d";
+  } else if (pct < 75) {
+    status = "Moderate";
+    color = "#facc15";
+  } else {
+    status = "Strong";
+    color = "#00ff88";
+  }
 
-          <div class="bar-bg">
-            <div class="bar-fill" style="width:${pct}%"></div>
-          </div>
+  return `
+    <div class="category-row">
+
+      <div class="cat-left">
+        <span class="icon">${icon}</span>
+        <span>${c.name}</span>
+      </div>
+
+      <div class="status-line">
+        <span style="color:${color}; font-weight:600">${status}</span>
+        <span>${pct}%</span>
+      </div>
+
+      <div class="bar-bg">
+        <div class="bar-fill" style="width:${pct}%; background:${color}"></div>
+      </div>
 
         </div>
       `;
@@ -686,16 +705,18 @@ if (weakestArea === "device security") {
 
   <!-- PROFILE -->
   <div class="card profile">
-    <h3>Personalized Security Profile</h3>
+  <h3>Personalized Security Profile</h3>
 
-    <div class="good">
-      🟢 Strongest: <b>${strongestArea}</b>
-    </div>
-
-    <div class="bad">
-      🔴 Weakest: <b>${weakestArea}</b>
-    </div>
+  <div class="good">
+    🟢 Strongest: <b>${strongestArea}</b>
+    <div class="sub-label">Good habits in this category reduce overall risk.</div>
   </div>
+
+  <div class="bad">
+    🔴 Weakest: <b>${weakestArea}</b>
+    <div class="sub-label">This is your highest vulnerability area.</div>
+  </div>
+</div>
 
   <!-- RECOMMENDATIONS -->
   <div class="card tips">
@@ -711,6 +732,36 @@ if (weakestArea === "device security") {
 
 </div>
 `;
+
+    const radarCtx = document.getElementById("radarChart");
+
+const radarLabels = categories.map(c => c.name);
+
+const radarData = categories.map(c => Math.round((c.score / 2) * 100));
+
+new Chart(radarCtx, {
+  type: "radar",
+  data: {
+    labels: radarLabels,
+    datasets: [{
+      label: "Security Score",
+      data: radarData,
+      fill: true,
+      backgroundColor: "rgba(0,255,200,0.2)",
+      borderColor: "#00ffcc",
+      pointBackgroundColor: "#00ffcc"
+    }]
+  },
+  options: {
+    scales: {
+      r: {
+        suggestedMin: 0,
+        suggestedMax: 100,
+        ticks: { display: false }
+      }
+    }
+  }
+});
 
   saveResults();
 }
