@@ -527,6 +527,17 @@ document.getElementById("nextBtn").onclick = () => {
   }
 };
 
+
+function getIcon(category) {
+  switch (category) {
+    case "phishing awareness": return "🎣";
+    case "password security": return "🔐";
+    case "public Wi-Fi safety": return "📡";
+    case "AI/data privacy": return "🤖";
+    case "device security": return "💻";
+    default: return "🛡️";
+  }
+}
 // RESULTS
 function showResults() {
   document.getElementById("app").style.display = "none";
@@ -634,51 +645,73 @@ if (weakestArea === "device security") {
   const percent = Math.round((totalScore / (questions.length * 2)) * 100);
 
   document.getElementById("result").innerHTML = `
-    <div class="results-card">
+    document.getElementById("result").innerHTML = `
+<div class="dashboard">
 
-      <h2 class="title">Cybersecurity Risk Assessment</h2>
-
-      <div class="score-circle" style="border-color:${color}">
-        <span>${percent}%</span>
-      </div>
-
-      <h3 class="risk" style="color:${color}">${level}</h3>
-      <p class="message">${message}</p>
-
-      <div class="bar-container">
-        <div class="bar" style="width:${percent}%; background:${color}"></div>
-      </div>
-       <div class="summary-box">
-      <h4>Personalized Security Profile</h4>
-
-      <p>
-        Your strongest area is <strong>${strongestArea}</strong>, showing good instincts in that category.
-      </p>
-
-      <p>
-        However, your weakest area is <strong>${weakestArea}</strong>, which is where you're most vulnerable to cyber threats.
-      </p>
+  <!-- TOP SUMMARY -->
+  <div class="card summary">
+    <div class="risk-header">
+      <h2>Cybersecurity Risk Assessment</h2>
+      <div class="score">${percent}%</div>
     </div>
-      ${
-        tips.length > 0
-          ? `
-<div class="tips">
-<h4>Personalized Recommendations</h4>
-<p style="font-size: 13px; opacity: 0.8;">
-  Based on your responses, here are the most important actions you should take:
-</p>
-          <ul>
-  ${[...tips].map(t => `<li>${t}</li>`).join("")}
-  </ul>
+
+    <h3 class="risk-level" style="color:${color}">${level}</h3>
+    <p>${message}</p>
+  </div>
+
+  <!-- CATEGORY SCORES -->
+  <div class="card categories">
+    <h3>Category Scores</h3>
+
+    ${categories.map(c => {
+      const icon = getIcon(c.name);
+      const pct = Math.round((c.score / 2) * 100);
+
+      return `
+        <div class="category-row">
+
+          <div class="cat-left">
+            <span class="icon">${icon}</span>
+            <span>${c.name}</span>
+          </div>
+
+          <div class="bar-bg">
+            <div class="bar-fill" style="width:${pct}%"></div>
+          </div>
+
         </div>
-      `
-          : `<p class="perfect">No major risks detected. Keep it up 👏</p>`
-      }
+      `;
+    }).join("")}
 
-      <button class="restart-btn" onclick="location.reload()">Restart Assessment</button>
+  </div>
 
+  <!-- PROFILE -->
+  <div class="card profile">
+    <h3>Personalized Security Profile</h3>
+
+    <div class="good">
+      🟢 Strongest: <b>${strongestArea}</b>
     </div>
-  `;
+
+    <div class="bad">
+      🔴 Weakest: <b>${weakestArea}</b>
+    </div>
+  </div>
+
+  <!-- RECOMMENDATIONS -->
+  <div class="card tips">
+    <h3>Smart Recommendations</h3>
+    <ul>
+      ${[...tips].map(t => `<li>🎯 ${t}</li>`).join("")}
+    </ul>
+  </div>
+
+  <button onclick="location.reload()" class="restart">
+    Restart Assessment
+  </button>
+
+</div>
+`;
 
   saveResults();
 }
