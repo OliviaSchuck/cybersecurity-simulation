@@ -742,36 +742,7 @@ if (weakestArea === "device security") {
 </div>
 `;
 
-    const radarCtx = document.getElementById("radarChart");
-
-const radarLabels = categories.map(c => c.name);
-
-const radarData = categories.map(c => Math.round((c.score / 2) * 100));
-
-new Chart(radarCtx, {
-  type: "radar",
-  data: {
-    labels: radarLabels,
-    datasets: [{
-      label: "Security Score",
-      data: radarData,
-      fill: true,
-      backgroundColor: "rgba(0,255,200,0.2)",
-      borderColor: "#00ffcc",
-      pointBackgroundColor: "#00ffcc"
-    }]
-  },
-  options: {
-    scales: {
-      r: {
-        suggestedMin: 0,
-        suggestedMax: 100,
-        ticks: { display: false }
-      }
-    }
-  }
-});
-
+  
   saveResults();
 }
 
