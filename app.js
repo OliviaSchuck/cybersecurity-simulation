@@ -601,6 +601,7 @@ function formatList(arr) {
   strongestAreas[0] = "balanced performance across all categories";
 }
 // find all matches (handles ties)
+// find all matches (handles ties)
 const weakestAreas = categories
   .filter(c => c.score === minScore)
   .map(c => c.name);
@@ -609,57 +610,33 @@ const strongestAreas = categories
   .filter(c => c.score === maxScore)
   .map(c => c.name);
 
-// handle tie
-if (categories[0].score === categories[categories.length - 1].score) {
-  weakestArea = "balanced awareness across categories";
-  strongestArea = "balanced awareness across categories";
-}
+// 🎯 SMART RECOMMENDATIONS BASED ON ALL WEAKEST AREAS
+weakestAreas.forEach(area => {
+  if (area === "Phishing Awareness") {
+    tips.add("Be more cautious with emails and messages—always verify the sender before clicking links.");
+    tips.add("Hover over links before clicking to check where they actually lead.");
+  }
 
-  
-  // Generate tips
-  let tips = new Set();
+  if (area === "Password Security") {
+    tips.add("Use a unique password for every account to prevent chain breaches.");
+    tips.add("Consider using a password manager to securely store strong passwords.");
+  }
 
-  answers.forEach(a => {
-    if (a.question.includes("same password") && a.score === 0) {
-      tips.add("Use a unique password for every account.");
-    }
-    if (a.question.includes("MFA") && a.score === 0) {
-      tips.add("Enable multi-factor authentication wherever possible.");
-    }
-    if (a.question.includes("unknown senders") && a.score === 0) {
-      tips.add("Avoid clicking links from unknown senders.");
-    }
-    if (a.question.includes("public Wi-Fi") && a.score === 0) {
-      tips.add("Avoid logging into sensitive accounts on public Wi-Fi.");
-    }
-  });
+  if (area === "Public Wi-Fi Safety") {
+    tips.add("Avoid logging into sensitive accounts on public Wi-Fi networks.");
+    tips.add("Use a VPN or personal hotspot when accessing important information.");
+  }
 
-  // 🎯 SMART RECOMMENDATIONS BASED ON WEAKEST AREA
-if (weakestArea === "phishing awareness") {
-  tips.add("Be more cautious with emails and messages—always verify the sender before clicking links.");
-  tips.add("Hover over links before clicking to check where they actually lead.");
-}
+  if (area === "AI/Data Privacy") {
+    tips.add("Avoid sharing sensitive information with AI tools.");
+    tips.add("Review policies before using AI for work.");
+  }
 
-if (weakestArea === "password security") {
-  tips.add("Use a unique password for every account to prevent chain breaches.");
-  tips.add("Consider using a password manager to securely store and generate strong passwords.");
-}
-
-if (weakestArea === "public Wi-Fi safety") {
-  tips.add("Avoid logging into sensitive accounts on public Wi-Fi networks.");
-  tips.add("Use a VPN or personal hotspot when accessing important information.");
-}
-
-if (weakestArea === "AI/data privacy") {
-  tips.add("Avoid sharing personal or sensitive information with AI tools.");
-  tips.add("Always review company policies before using AI for work-related tasks.");
-}
-
-if (weakestArea === "device security") {
-  tips.add("Keep your devices updated to protect against vulnerabilities.");
-  tips.add("Enable antivirus or endpoint protection for an extra layer of security.");
-}
-  
+  if (area === "Device Security") {
+    tips.add("Keep your devices updated to protect against vulnerabilities.");
+    tips.add("Enable antivirus or endpoint protection.");
+  }
+});
 
   const percent = Math.round((totalScore / (questions.length * 2)) * 100);
 
@@ -672,7 +649,7 @@ if (weakestArea === "device security") {
       <h2>Cybersecurity Risk Assessment</h2>
       <div class="gauge" style="--value:${percent}; --color:${color}">
   <div class="gauge-inner">
-    ${percent}%
+    ${percent}% </div>
   </div>
 </div>
 
@@ -746,6 +723,7 @@ if (weakestArea === "device security") {
 
   <div class="rec-grid">
     ${[...tips].map(t => {
+      let title = "🛡️ Security Tips";
 
       if (t.toLowerCase().includes("password")) title = "🔐 Password Security Tip";
       else if (t.toLowerCase().includes("mfa")) title = "🔑 Account Protection Tip";
