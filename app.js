@@ -398,7 +398,6 @@ function renderQuestion() {
   b.classList.remove("selected");
 });
 
-btn.classList.add("selected");
   document.getElementById("nextBtn").style.display = "none";
 
 // 👇 ONLY runs for Question 2
