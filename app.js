@@ -372,14 +372,20 @@ const questions = [
 function renderQuestion() {
   const q = questions[currentIndex];
 
-  optionsDiv.dataset.locked = "false";
+  const optionsDiv = document.getElementById("options"); // MUST come first
+
+  optionsDiv.innerHTML = "";
+  optionsDiv.dataset.locked = "false"; // reset lock every question
+
+  document.getElementById("feedback").textContent = "";
+  document.getElementById("nextBtn").style.display = "none";
 
   // Progress text
   document.getElementById("progress-text").textContent =
     `Question ${currentIndex + 1} of ${questions.length}`;
 
   // Progress bar
-  const progressPercent = ((currentIndex) / questions.length) * 100;
+  const progressPercent = (currentIndex / questions.length) * 100;
   document.getElementById("progressBar").style.width = progressPercent + "%";
 
   document.getElementById("question").textContent = q.question;
@@ -508,14 +514,6 @@ if (q.category === "device") {
       });
 
       document.getElementById("feedback").textContent = option.feedback;
-
-      // remove "selected" from all buttons first
-  Array.from(optionsDiv.children).forEach(b => {
-    b.classList.remove("selected");
-  });
-
-  // add selected style to clicked button
-  btn.classList.add("selected");
 
   // disable buttons after selection (locks in answer)
   Array.from(optionsDiv.children).forEach(b => b.disabled = true);
