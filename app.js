@@ -183,6 +183,7 @@ const questions = [
 
 {
   question: "How do you feel about using two-factor or multi-factor authentication (MFA) for your accounts when it’s available?",
+  image: "image/2fa-vs-mfa.webp",
   options: [
     { text: "Always", score: 2, feedback: "Great! This is one of the best protections you can have." },
     { text: "Sometimes", score: 1, feedback: "Good, but why not use it everywhere?" },
@@ -253,6 +254,7 @@ const questions = [
 {
   question: "A webpage you’re trying to open blocks you with a warning: 'This link may be unsafe. Continue anyway?'  Would you:",
   category: "device",
+  image: "image/connection.jpg",
   options: [
     { text: "Click 'Continue (Unsafe)'", score: 0, feedback: "You saw ‘unsafe’ and still went for it 😭" },
     { text: "Close", score: 2, feedback: "Smart! Warnings exist for a reason." }
@@ -360,6 +362,7 @@ const questions = [
 {
   question: "You get an email saying you need to take urgent action (like account closure), you:",
   category: "phishing",
+  image: "image/img-02.webp",
   options: [
     { text: "Click immediately", score: 0, feedback: "Urgency is a phishing red flag." },
     { text: "Verify the sender first", score: 2, feedback: "Best choice! Pause and check." },
