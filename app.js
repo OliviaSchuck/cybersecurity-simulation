@@ -590,6 +590,7 @@ categories.sort((a, b) => a.score - b.score);
 // get min + max scores
 const minScore = Math.min(...categories.map(c => c.score));
 const maxScore = Math.max(...categories.map(c => c.score));
+const allSame = minScore === maxScore;
 function formatList(arr) {
   if (arr.length === 1) return arr[0];
   if (arr.length === 2) return arr.join(" and ");
@@ -658,6 +659,7 @@ let tips = new Set();
 
     <h3 class="risk-level" style="color:${color}">${level}</h3>
     <p>${message}</p>
+    ${allSame ? `<p class="no-risk">No major risks detected 👏</p>` : ""}
   </div>
 
   <!-- CATEGORY SCORES -->
