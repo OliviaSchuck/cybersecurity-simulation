@@ -374,8 +374,7 @@ body::before {
 
 /* full width sections */
 .summary,
-.restart,
-.profile {
+.restart, {
   grid-column: span 2;
 }
 
