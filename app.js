@@ -607,7 +607,7 @@ const strongestAreas = categories
   .filter(c => c.score === maxScore)
   .map(c => c.name);
 
-  if (minScore === maxScore) {
+  if (allSame) {
   weakestAreas.length = 0;
   strongestAreas.length = 1;
   strongestAreas[0] = "balanced performance across all categories";
@@ -781,7 +781,7 @@ else if (t.toLowerCase().includes("device") || t.toLowerCase().includes("update"
 }
 else if (t.toLowerCase().includes("ai")) {
   title = "🤖 AI Data Privacy Tip";
-
+}
 
       return `
         <div class="rec-card">
