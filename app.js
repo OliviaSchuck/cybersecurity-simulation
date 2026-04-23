@@ -659,11 +659,11 @@ if (percent >= 85) {
   persona = "🛡️ Cyber Guardian";
   personaDesc = "You follow strong security practices and consistently make safe decisions.";
 } 
-else if (percent >= 70) {
+else if (percent >= 65) {
   persona = "🔐 Cautious User";
   personaDesc = "You’re generally security-aware, but a few habits could still be improved.";
 } 
-else if (percent >= 50) {
+else if (percent >= 40) {
   persona = "⚠️ Reactive User";
   personaDesc = "You understand some risks, but your behavior isn’t always consistent.";
 } 
@@ -672,6 +672,17 @@ else {
   personaDesc = "Your current habits leave you vulnerable to common cyber threats.";
 }
 
+  let insight = "";
+
+if (weakestAreas.includes("Phishing Awareness")) {
+  insight = "Your biggest risk comes from how you handle emails and messages.";
+} else if (weakestAreas.includes("Device Security")) {
+  insight = "Your device protection habits are your biggest vulnerability.";
+} else if (weakestAreas.includes("Password Security")) {
+  insight = "Your password habits could expose multiple accounts at once.";
+}
+
+  <p class="insight">${insight}</p>
   
   document.getElementById("result").innerHTML = `
 <div class="dashboard">
