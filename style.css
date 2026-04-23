@@ -545,6 +545,11 @@ body::before {
   font-size: 22px;
   font-weight: bold;
 }
+.no-risk {
+  margin-top: 8px;
+  color: #00ff88;
+  font-weight: 600;
+}
 
 @media (max-width: 768px) {
   .dashboard {
