@@ -481,6 +481,19 @@ if (q.type === "multi") {
     btn.onclick = () => {
   if (optionsDiv.dataset.locked === "true") return;
   optionsDiv.dataset.locked = "true";
+        // 1. highlight FIRST (before anything else)
+  btn.classList.add("selected");
+
+  // 2. lock UI
+  Array.from(optionsDiv.children).forEach(b => {
+    b.disabled = true;
+  });
+
+  // 3. feedback
+  document.getElementById("feedback").textContent = option.feedback;
+
+  document.getElementById("nextBtn").style.display = "block";
+};
       totalScore += option.score;
 
       // CATEGORY TRACKING (correct place)
