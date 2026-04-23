@@ -568,6 +568,11 @@ body::before {
   opacity: 0.8;
   margin-top: 2px;
 }
+.insight {
+  margin-top: 8px;
+  font-size: 0.9rem;
+  opacity: 0.85;
+}
 
 @media (max-width: 768px) {
   .dashboard {
