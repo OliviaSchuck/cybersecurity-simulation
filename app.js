@@ -390,7 +390,6 @@ function renderQuestion() {
 
   document.getElementById("question").textContent = q.question;
 
-  const optionsDiv = document.getElementById("options");
   optionsDiv.innerHTML = "";
 
   document.getElementById("feedback").textContent = "";
