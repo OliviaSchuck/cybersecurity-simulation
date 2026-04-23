@@ -530,11 +530,11 @@ document.getElementById("nextBtn").onclick = () => {
 
 function getIcon(category) {
   switch (category) {
-    case "phishing awareness": return "🎣";
-    case "password security": return "🔐";
-    case "public Wi-Fi safety": return "📡";
-    case "AI/data privacy": return "🤖";
-    case "device security": return "💻";
+    case "Phishing Awareness": return "🎣";
+    case "Password Security": return "🔐";
+    case "Public Wi-Fi Safety": return "📡";
+    case "AI/Data Privacy": return "🤖";
+    case "Device Security": return "💻";
     default: return "🛡️";
   }
 }
@@ -595,11 +595,7 @@ function formatList(arr) {
   if (arr.length === 2) return arr.join(" and ");
   return arr.slice(0, -1).join(", ") + ", and " + arr[arr.length - 1];
 }
-  if (minScore === maxScore) {
-  weakestAreas.length = 0;
-  strongestAreas.length = 1;
-  strongestAreas[0] = "balanced performance across all categories";
-}
+  
 // find all matches (handles ties)
 // find all matches (handles ties)
 const weakestAreas = categories
@@ -610,8 +606,15 @@ const strongestAreas = categories
   .filter(c => c.score === maxScore)
   .map(c => c.name);
 
+  if (minScore === maxScore) {
+  weakestAreas.length = 0;
+  strongestAreas.length = 1;
+  strongestAreas[0] = "balanced performance across all categories";
+}
+
 // 🎯 SMART RECOMMENDATIONS BASED ON ALL WEAKEST AREAS
-weakestAreas.forEach(area => {
+let tips = new Set();
+  weakestAreas.forEach(area => {
   if (area === "Phishing Awareness") {
     tips.add("Be more cautious with emails and messages—always verify the sender before clicking links.");
     tips.add("Hover over links before clicking to check where they actually lead.");
