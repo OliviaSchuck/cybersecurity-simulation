@@ -692,7 +692,9 @@ if (weakestAreas.includes("Phishing Awareness")) {
       <h2>Cybersecurity Risk Assessment</h2>
       <div class="gauge" style="--value:${percent}; --color:${color}">
   <div class="gauge-inner">
-    ${percent}% </div>
+  <div class="score-label">Overall Security Score</div>
+  ${percent}%
+</div>
   </div>
 </div>
 
@@ -701,6 +703,7 @@ if (weakestAreas.includes("Phishing Awareness")) {
     <div class="persona">
   <div class="persona-title">${persona}</div>
   <div class="persona-desc">${personaDesc}</div>
+   <p class="insight">${insight}</p>
 </div>
     ${allSame ? `<p class="no-risk">No major risks detected 👏</p>` : ""}
   </div>
