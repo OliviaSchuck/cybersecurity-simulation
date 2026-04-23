@@ -348,13 +348,23 @@ body::before {
 /* ================= DASHBOARD (NEW RESULTS UI) ================= */
 
 .dashboard {
-  max-width: 1000px;
+  max-width: 1100px;
   margin: 40px auto;
   padding: 20px;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1.4fr 1fr;
+  grid-template-areas:
+    "summary summary"
+    "categories profile"
+    "categories tips"
+    "restart restart";
   gap: 16px;
 }
+.summary { grid-area: summary; }
+.categories { grid-area: categories; }
+.profile { grid-area: profile; }
+.tips { grid-area: tips; }
+.restart { grid-area: restart; }
 
 /* cards */
 .card {
