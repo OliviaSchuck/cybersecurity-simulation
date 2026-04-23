@@ -390,8 +390,6 @@ function renderQuestion() {
 
   document.getElementById("question").textContent = q.question;
 
-  optionsDiv.innerHTML = "";
-
   document.getElementById("feedback").textContent = "";
   Array.from(optionsDiv.children).forEach(b => {
   b.disabled = true;
