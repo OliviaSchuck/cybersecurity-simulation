@@ -372,6 +372,8 @@ const questions = [
 function renderQuestion() {
   const q = questions[currentIndex];
 
+  optionsDiv.dataset.locked = "false";
+
   // Progress text
   document.getElementById("progress-text").textContent =
     `Question ${currentIndex + 1} of ${questions.length}`;
@@ -386,6 +388,12 @@ function renderQuestion() {
   optionsDiv.innerHTML = "";
 
   document.getElementById("feedback").textContent = "";
+  Array.from(optionsDiv.children).forEach(b => {
+  b.disabled = true;
+  b.classList.remove("selected");
+});
+
+btn.classList.add("selected");
   document.getElementById("nextBtn").style.display = "none";
 
 // 👇 ONLY runs for Question 2
@@ -467,8 +475,8 @@ if (q.type === "multi") {
     btn.textContent = option.text;
 
     btn.onclick = () => {
-      if (optionsDiv.classList.contains("locked")) return;
-  optionsDiv.classList.add("locked");
+  if (optionsDiv.dataset.locked === "true") return;
+  optionsDiv.dataset.locked = "true";
       totalScore += option.score;
 
       // CATEGORY TRACKING (correct place)
