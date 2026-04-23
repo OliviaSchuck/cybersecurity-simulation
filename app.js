@@ -641,9 +641,38 @@ let tips = new Set();
     tips.add("Enable antivirus or endpoint protection.");
   }
 });
+const defaultTips = [
+  "Enable multi-factor authentication wherever possible.",
+  "Avoid clicking links from unknown senders.",
+  "Keep your devices updated regularly.",
+  "Use a password manager for stronger security.",
+  "Avoid logging into sensitive accounts on public Wi-Fi."
+];
 
+defaultTips.forEach(t => tips.add(t));
   const percent = Math.round((totalScore / (questions.length * 2)) * 100);
 
+  let persona = "";
+let personaDesc = "";
+
+if (percent >= 85) {
+  persona = "🛡️ Cyber Guardian";
+  personaDesc = "You follow strong security practices and consistently make safe decisions.";
+} 
+else if (percent >= 70) {
+  persona = "🔐 Cautious User";
+  personaDesc = "You’re generally security-aware, but a few habits could still be improved.";
+} 
+else if (percent >= 50) {
+  persona = "⚠️ Reactive User";
+  personaDesc = "You understand some risks, but your behavior isn’t always consistent.";
+} 
+else {
+  persona = "🚨 Risk Taker";
+  personaDesc = "Your current habits leave you vulnerable to common cyber threats.";
+}
+
+  
   document.getElementById("result").innerHTML = `
 <div class="dashboard">
 
@@ -659,6 +688,10 @@ let tips = new Set();
 
     <h3 class="risk-level" style="color:${color}">${level}</h3>
     <p>${message}</p>
+    <div class="persona">
+  <div class="persona-title">${persona}</div>
+  <div class="persona-desc">${personaDesc}</div>
+</div>
     ${allSame ? `<p class="no-risk">No major risks detected 👏</p>` : ""}
   </div>
 
@@ -673,10 +706,10 @@ let tips = new Set();
   let status = "";
   let color = "";
 
-  if (pct < 40) {
+  if (pct < 50) {
     status = "Needs Work";
     color = "#ff4d4d";
-  } else if (pct < 75) {
+  } else if (pct < 80) {
     status = "Moderate";
     color = "#facc15";
   } else {
@@ -693,8 +726,9 @@ let tips = new Set();
       </div>
 
       <div class="status-line">
-        <span style="color:${color}; font-weight:600">${status}</span>
-        <span>${pct}%</span>
+        <span style="color:${color}; font-weight:600">
+  ${status} • ${pct}%
+</span>
       </div>
 
       <div class="bar-bg">
@@ -728,14 +762,26 @@ let tips = new Set();
 
   <div class="rec-grid">
     ${[...tips].map(t => {
-      let title = "🛡️ Security Tips";
+      let title = "🛡️ Security Tip";
 
-      if (t.toLowerCase().includes("password")) title = "🔐 Password Security Tip";
-      else if (t.toLowerCase().includes("mfa")) title = "🔑 Account Protection Tip";
-      else if (t.toLowerCase().includes("wi-fi") || t.toLowerCase().includes("vpn")) title = "📡 Network Safety Tip";
-      else if (t.toLowerCase().includes("email") || t.toLowerCase().includes("link")) title = "🎣 Phishing Awareness Tip";
-      else if (t.toLowerCase().includes("ai")) title = "🤖 AI Data Privacy Tip";
-      else if (t.toLowerCase().includes("device") || t.toLowerCase().includes("update")) title = "💻 Device Security Tip";
+if (t.toLowerCase().includes("password")) {
+  title = "🔐 Password Security Tip";
+}
+else if (t.toLowerCase().includes("mfa")) {
+  title = "🔑 Account Protection Tip";
+}
+else if (t.toLowerCase().includes("wi-fi") || t.toLowerCase().includes("vpn")) {
+  title = "📡 Network Safety Tip";
+}
+else if (t.toLowerCase().includes("email") || t.toLowerCase().includes("link")) {
+  title = "🎣 Phishing Awareness Tip";
+}
+else if (t.toLowerCase().includes("device") || t.toLowerCase().includes("update") || t.toLowerCase().includes("antivirus")) {
+  title = "💻 Device Security Tip";
+}
+else if (t.toLowerCase().includes("ai")) {
+  title = "🤖 AI Data Privacy Tip";
+
 
       return `
         <div class="rec-card">
