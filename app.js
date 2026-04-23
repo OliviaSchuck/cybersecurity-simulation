@@ -99,6 +99,7 @@ const questions = [
 {
   question: "When a website asks you to accept cookies, do you usually click 'Accept' without reading?",
   category: "device",
+  image: "images/e1c8b15b035125d375f72fb23146df48.jpg"
   options: [
     { text: "Yes", score: 0, feedback: "Quick click...but you might be sharing more data than you realize." },
     { text: "No", score: 2, feedback: "Nice! You're paying attention to your privacy." }
@@ -381,6 +382,14 @@ function renderQuestion() {
   document.getElementById("progressBar").style.width = progressPercent + "%";
 
   document.getElementById("question").textContent = q.question;
+  const imgEl = document.getElementById("questionImage");
+
+if (q.image) {
+  imgEl.src = q.image;
+  imgEl.style.display = "block";
+} else {
+  imgEl.style.display = "none";
+}
 
   const optionsDiv = document.getElementById("options");
   optionsDiv.innerHTML = "";
