@@ -609,6 +609,12 @@ body::before {
   }
 }
 
+  #questionImage {
+  max-width: 320px;
+  width: 100%;
+  margin: 15px auto;
+  border-radius: 12px;
+}
   .summary,
   .restart {
     grid-column: span 1;
