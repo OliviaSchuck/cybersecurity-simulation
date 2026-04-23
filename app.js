@@ -733,7 +733,7 @@ if (weakestArea === "device security") {
       else if (t.toLowerCase().includes("mfa")) title = "🔑 Account Protection Tip";
       else if (t.toLowerCase().includes("wi-fi") || t.toLowerCase().includes("vpn")) title = "📡 Network Safety Tip";
       else if (t.toLowerCase().includes("email") || t.toLowerCase().includes("link")) title = "🎣 Phishing Awareness Tip";
-      else if (t.toLowerCase().includes("ai")) title = "🤖 AI Data Privacy";
+      else if (t.toLowerCase().includes("ai")) title = "🤖 AI Data Privacy Tip";
       else if (t.toLowerCase().includes("device") || t.toLowerCase().includes("update")) title = "💻 Device Security Tip";
 
       return `
