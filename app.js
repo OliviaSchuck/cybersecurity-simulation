@@ -372,30 +372,20 @@ const questions = [
 function renderQuestion() {
   const q = questions[currentIndex];
 
-  const optionsDiv = document.getElementById("options"); // MUST come first
-
-  optionsDiv.innerHTML = "";
-  optionsDiv.dataset.locked = "false"; // reset lock every question
-
-  document.getElementById("feedback").textContent = "";
-  document.getElementById("nextBtn").style.display = "none";
-
   // Progress text
   document.getElementById("progress-text").textContent =
     `Question ${currentIndex + 1} of ${questions.length}`;
 
   // Progress bar
-  const progressPercent = (currentIndex / questions.length) * 100;
+  const progressPercent = ((currentIndex) / questions.length) * 100;
   document.getElementById("progressBar").style.width = progressPercent + "%";
 
   document.getElementById("question").textContent = q.question;
 
-  document.getElementById("feedback").textContent = "";
-  Array.from(optionsDiv.children).forEach(b => {
-  b.disabled = true;
-  b.classList.remove("selected");
-});
+  const optionsDiv = document.getElementById("options");
+  optionsDiv.innerHTML = "";
 
+  document.getElementById("feedback").textContent = "";
   document.getElementById("nextBtn").style.display = "none";
 
 // 👇 ONLY runs for Question 2
@@ -477,21 +467,8 @@ if (q.type === "multi") {
     btn.textContent = option.text;
 
     btn.onclick = () => {
-  if (optionsDiv.dataset.locked === "true") return;
-  optionsDiv.dataset.locked = "true";
-        // 1. highlight FIRST (before anything else)
-  btn.classList.add("selected");
-
-  // 2. lock UI
-  Array.from(optionsDiv.children).forEach(b => {
-    b.disabled = true;
-  });
-
-  // 3. feedback
-  document.getElementById("feedback").textContent = option.feedback;
-
-  document.getElementById("nextBtn").style.display = "block";
-};
+      if (optionsDiv.classList.contains("locked")) return;
+  optionsDiv.classList.add("locked");
       totalScore += option.score;
 
       // CATEGORY TRACKING (correct place)
@@ -523,6 +500,14 @@ if (q.category === "device") {
       });
 
       document.getElementById("feedback").textContent = option.feedback;
+
+      // remove "selected" from all buttons first
+  Array.from(optionsDiv.children).forEach(b => {
+    b.classList.remove("selected");
+  });
+
+  // add selected style to clicked button
+  btn.classList.add("selected");
 
   // disable buttons after selection (locks in answer)
   Array.from(optionsDiv.children).forEach(b => b.disabled = true);
