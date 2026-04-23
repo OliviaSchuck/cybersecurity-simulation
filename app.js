@@ -562,23 +562,23 @@ function showResults() {
   // Results by section
 const categories = [
   {
-    name: "phishing awareness",
+    name: "Phishing Awareness",
     score: phishingCount ? phishingScore / phishingCount : 0
   },
   {
-    name: "password security",
+    name: "Password Security",
     score: passwordCount ? passwordScore / passwordCount : 0
   },
   {
-    name: "public Wi-Fi safety",
+    name: "Public Wi-Fi Safety",
     score: wifiCount ? wifiScore / wifiCount : 0
   },
   {
-    name: "AI/data privacy",
+    name: "AI/Data Privacy",
     score: aiCount ? aiScore / aiCount : 0
   },
   {
-    name: "device security",
+    name: "Device Security",
     score: deviceCount ? deviceScore / deviceCount : 0
   }
 ];
@@ -723,7 +723,7 @@ if (weakestArea === "device security") {
 
   <!-- RECOMMENDATIONS -->
  <div class="card tips">
-  <h3>Smart Recommendations</h3>
+  <h3>Personalized Recommendations</h3>
 
   <div class="rec-grid">
     ${[...tips].map(t => {
