@@ -377,7 +377,7 @@ function renderQuestion() {
     `Question ${currentIndex + 1} of ${questions.length}`;
 
   // Progress bar
-  const progressPercent = ((currentIndex) / questions.length) * 100;
+  const progressPercent = ((currentIndex + 1) / questions.length) * 100;
   document.getElementById("progressBar").style.width = progressPercent + "%";
 
   document.getElementById("question").textContent = q.question;
@@ -466,8 +466,7 @@ if (q.type === "multi") {
     btn.textContent = option.text;
 
     btn.onclick = () => {
-      if (optionsDiv.classList.contains("locked")) return;
-  optionsDiv.classList.add("locked");
+     
       totalScore += option.score;
 
       // CATEGORY TRACKING (correct place)
