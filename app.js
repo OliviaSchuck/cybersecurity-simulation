@@ -148,7 +148,7 @@ const questions = [
   options: [
     { text: "Yes", score: 2, feedback: "Good! Now let's see if you can spot it in action." },
     { text: "No", score: 0, feedback: "Phishing is one of the most common attacks. It is when scammers send fake messages (like emails or texts) that look real to trick you into giving up personal information like passwords or credit card details." },
-    { text: "Heard of it", score: 1, feedback: "Good start! recognizing it is the next step. Phishing is when scammers send fake messages (like emails or texts) that look real to trick you into giving up personal information like passwords or credit card details." }
+    { text: "Heard of it", score: 1, feedback: "Good start! Recognizing it is the next step. Phishing is when scammers send fake messages (like emails or texts) that look real to trick you into giving up personal information like passwords or credit card details." }
   ]
 },
 
@@ -722,16 +722,27 @@ if (weakestArea === "device security") {
 </div>
 
   <!-- RECOMMENDATIONS -->
-  <div class="card tips">
+ <div class="card tips">
   <h3>Smart Recommendations</h3>
 
   <div class="rec-grid">
-    ${[...tips].map(t => `
-      <div class="rec-card">
-        <div class="rec-title">Security Tip</div>
-        <div class="rec-text">${t}</div>
-      </div>
-    `).join("")}
+    ${[...tips].map(t => {
+      let title = "Security Improvement";
+
+      if (t.toLowerCase().includes("password")) title = "🔐 Password Security Tip";
+      else if (t.toLowerCase().includes("mfa")) title = "🔑 Account Protection Tip";
+      else if (t.toLowerCase().includes("wi-fi") || t.toLowerCase().includes("vpn")) title = "📡 Network Safety Tip";
+      else if (t.toLowerCase().includes("email") || t.toLowerCase().includes("link")) title = "🎣 Phishing Awareness Tip";
+      else if (t.toLowerCase().includes("ai")) title = "🤖 AI Data Privacy";
+      else if (t.toLowerCase().includes("device") || t.toLowerCase().includes("update")) title = "💻 Device Security Tip";
+
+      return `
+        <div class="rec-card">
+          <div class="rec-title">${title}</div>
+          <div class="rec-text">${t}</div>
+        </div>
+      `;
+    }).join("")}
   </div>
 </div>
 
