@@ -445,7 +445,6 @@ if (q.type === "multi") {
   </ul>
 `;
 
-    totalScore += score;
     
   
     answers.push({
