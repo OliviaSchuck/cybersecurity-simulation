@@ -467,6 +467,8 @@ if (q.type === "multi") {
     btn.textContent = option.text;
 
     btn.onclick = () => {
+      if (optionsDiv.classList.contains("locked")) return;
+  optionsDiv.classList.add("locked");
       totalScore += option.score;
 
       // CATEGORY TRACKING (correct place)
