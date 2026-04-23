@@ -587,8 +587,27 @@ const categories = [
 categories.sort((a, b) => a.score - b.score);
 
 // assign areas
-let weakestArea = categories[0].name;
-let strongestArea = categories[categories.length - 1].name;
+// get min + max scores
+const minScore = Math.min(...categories.map(c => c.score));
+const maxScore = Math.max(...categories.map(c => c.score));
+function formatList(arr) {
+  if (arr.length === 1) return arr[0];
+  if (arr.length === 2) return arr.join(" and ");
+  return arr.slice(0, -1).join(", ") + ", and " + arr[arr.length - 1];
+}
+  if (minScore === maxScore) {
+  weakestAreas.length = 0;
+  strongestAreas.length = 1;
+  strongestAreas[0] = "balanced performance across all categories";
+}
+// find all matches (handles ties)
+const weakestAreas = categories
+  .filter(c => c.score === minScore)
+  .map(c => c.name);
+
+const strongestAreas = categories
+  .filter(c => c.score === maxScore)
+  .map(c => c.name);
 
 // handle tie
 if (categories[0].score === categories[categories.length - 1].score) {
@@ -711,12 +730,12 @@ if (weakestArea === "device security") {
   <h3>Personalized Security Profile</h3>
 
   <div class="good">
-    🟢 Strongest: <b>${strongestArea}</b>
+    🟢 Strongest: <b>${formatList(strongestAreas)}</b>
     <div class="sub-label">Good habits in this category reduce overall risk.</div>
   </div>
 
   <div class="bad">
-    🔴 Weakest: <b>${weakestArea}</b>
+    🔴 Weakest: <b>${formatList(weakestAreas)}</b>
     <div class="sub-label">This is your highest vulnerability area.</div>
   </div>
 </div>
@@ -727,7 +746,6 @@ if (weakestArea === "device security") {
 
   <div class="rec-grid">
     ${[...tips].map(t => {
-      let title = "Security Improvement";
 
       if (t.toLowerCase().includes("password")) title = "🔐 Password Security Tip";
       else if (t.toLowerCase().includes("mfa")) title = "🔑 Account Protection Tip";
