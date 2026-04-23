@@ -682,7 +682,6 @@ if (weakestAreas.includes("Phishing Awareness")) {
   insight = "Your password habits could expose multiple accounts at once.";
 }
 
-  <p class="insight">${insight}</p>
   
   document.getElementById("result").innerHTML = `
 <div class="dashboard">
