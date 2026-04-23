@@ -690,7 +690,7 @@ if (weakestAreas.includes("Phishing Awareness")) {
   <div class="card summary">
     <div class="risk-header">
       <h2>Cybersecurity Risk Assessment</h2>
-<div class="score-label">Overall Security Score</div>
+<div class="score-label"></div>
 <div class="gauge" style="--value:${percent}; --color:${color}">
   <div class="gauge-inner">
     ${percent}%
