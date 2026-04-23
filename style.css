@@ -498,7 +498,8 @@ body::before {
 
 .rec-grid {
   display: grid;
-  gap: 10px;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
 }
 
 .rec-card {
@@ -579,11 +580,20 @@ body::before {
   opacity: 0.7;
   margin-bottom: 6px;
 }
+.profile {
+  padding: 16px;
+}
 
 @media (max-width: 768px) {
   .dashboard {
     grid-template-columns: 1fr;
   }
+
+  @media (max-width: 768px) {
+  .rec-grid {
+    grid-template-columns: 1fr;
+  }
+}
 
   .summary,
   .restart {
