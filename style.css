@@ -98,10 +98,9 @@ body::before {
 /* ================= QUIZ CONTAINER ================= */
 
 #quiz-container {
-  width: 90%;
   max-width: 750px;
-  margin: 40px auto;
-  padding: 25px;
+  margin: 80px auto;
+  padding: 40px;
   background: rgba(255, 255, 255, 0.06);
   border-radius: 20px;
   box-shadow: 0 10px 40px rgba(0,0,0,0.5);
@@ -152,9 +151,6 @@ body::before {
 }
 
 #options button {
-  width: 100%;
-  padding: 16px;
-  font-size: 1rem;
   padding: 14px;
   font-size: 1rem;
   border-radius: 12px;
@@ -388,7 +384,7 @@ body::before {
 
 /* full width sections */
 .summary,
-.restart {
+.restart, {
   grid-column: span 2;
 }
 
@@ -603,73 +599,21 @@ body::before {
 }
 
 @media (max-width: 768px) {
-
-  /* DASHBOARD LAYOUT */
   .dashboard {
-    display: flex;
-    flex-direction: column;
-    gap: 14px;
-    padding: 10px;
-  }
-
-  /* RESET ALL GRID SPANNING */
-  .summary,
-  .categories,
-  .profile,
-  .tips,
-  .restart {
-    grid-column: unset !important;
-    width: 100%;
-  }
-
-  /* CARDS */
-  .card {
-    padding: 16px;
-  }
-
-  /* CATEGORY ROW SPACING */
-  .category-row {
-    margin: 10px 0;
-  }
-
-  /* TEXT SIZING */
-  .risk-header h2 {
-    font-size: 1.1rem;
-  }
-
-  .risk-level {
-    font-size: 16px;
-  }
-
-  /* GAUGE SMALLER */
-  .gauge {
-    width: 110px;
-    height: 110px;
-  }
-
-  .gauge-inner {
-    width: 85px;
-    height: 85px;
-    font-size: 18px;
-  }
-
-  /* RECOMMENDATIONS STACK */
-  .rec-grid {
     grid-template-columns: 1fr;
   }
 
-  /* BUTTON FULL WIDTH */
-  .restart {
-    width: 100%;
+  @media (max-width: 768px) {
+  .rec-grid {
+    grid-template-columns: 1fr;
   }
 }
 
- #questionImage {
-  width: 100%;
+  #questionImage {
   max-width: 320px;
-  height: auto;
+  max-width: 300px;
+  width: 100%;
   margin: 15px auto;
-  display: block;
   border-radius: 12px;
 }
   .summary,
@@ -677,4 +621,3 @@ body::before {
     grid-column: span 1;
   }
 }
-
